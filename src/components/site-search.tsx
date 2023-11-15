@@ -1,33 +1,51 @@
 "use client";
 
-import * as React from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { DateRange } from "react-day-picker";
-import { addDays, format } from "date-fns";
-import { DatePickerWithRange } from "./ui/date-picker-with-range";
-import { useState } from "react";
+import { addDays } from "date-fns";
+import { SearchDatePicker } from "./search/search-date-picker";
+import { SearchGuestSelector } from "./search/search-guest-selector";
+import { SearchInput } from "./search/search-input";
 
 export default function SiteSearch() {
-  const [query, setQuery] = useState("");
-  const [date, setDate] = React.useState<DateRange | undefined>({
+  const [searchQuery, setSearchQuery] = useState("");
+  const [date, setDate] = useState<DateRange | undefined>({
+    // TODO: get date/timezone from the request location
     from: addDays(new Date(), 7),
     to: addDays(new Date(), 8),
   });
+  const [numAdults, setNumAdults] = useState(1);
+  const [numChildren, setNumChildren] = useState(0);
+  const [childAges, setChildAges] = useState<number[]>([]);
+
+  useEffect(() => {
+    // alert(`${date?.from}\n${date?.to}`);
+  }, [date]);
 
   return (
     <div className="bg-primary  pb-10">
       <h1 className="text-2xl text-white">Compare best options</h1>
-      <div className="flex">
-        <Input
+      <div className="mx-auto flex max-w-[80%] items-center justify-center py-4">
+        <SearchInput
           className="rounded-r-none"
-          placeholder="Enter city or region"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Where to?"
         />
-        <DatePickerWithRange
-          className="rounded-l-none"
+        <SearchDatePicker
+          classNameButton="rounded-none"
           date={date}
           setDate={setDate}
+        />
+        <SearchGuestSelector
+          className="rounded-l-none"
+          numAdults={numAdults}
+          setNumAdults={setNumAdults}
+          numChildren={numChildren}
+          setNumChildren={setNumChildren}
+          childAges={childAges}
+          setChildAges={setChildAges}
         />
       </div>
     </div>
