@@ -17,16 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-type Props = {
-  className?: string;
-  numAdults: number;
-  setNumAdults: React.Dispatch<React.SetStateAction<number>>;
-  numChildren: number;
-  setNumChildren: React.Dispatch<React.SetStateAction<number>>;
-  childAges: number[];
-  setChildAges: React.Dispatch<React.SetStateAction<number[]>>;
-};
-
+// NOTE: CONSTANTS
 const MAX_ADULTS = 99;
 const MAX_CHILDREN = 99;
 
@@ -44,6 +35,16 @@ function makeNameString(numAdults: number, numChildren: number): string {
   }
   return str;
 }
+
+type Props = {
+  className?: string;
+  numAdults: number;
+  setNumAdults: React.Dispatch<React.SetStateAction<number>>;
+  numChildren: number;
+  setNumChildren: React.Dispatch<React.SetStateAction<number>>;
+  childAges: string[];
+  setChildAges: React.Dispatch<React.SetStateAction<string[]>>;
+};
 
 export function SearchGuestSelector({
   className,
@@ -111,7 +112,7 @@ export function SearchGuestSelector({
                   className="h-8 w-4 rounded-sm"
                   onClick={() => {
                     setNumChildren((prev) => prev + 1);
-                    setChildAges((prev) => [...prev, -1]);
+                    setChildAges((prev) => [...prev, "-1"]);
                   }}
                 >
                   +
@@ -127,24 +128,25 @@ export function SearchGuestSelector({
                   >
                     <Label>{`Child ${i + 1}`}</Label>
                     <Select
+                      defaultValue="-1"
                       onValueChange={(val) => {
                         setChildAges((prev) => {
                           const newArr = [...prev];
-                          newArr[i] = parseInt(val);
+                          newArr[i] = val;
                           console.log(newArr);
                           return newArr;
                         });
                       }}
                     >
                       <SelectTrigger className="w-[140px]">
-                        {/* FIXME: FIX THIS */}
-                        <SelectValue placeholder="select age">
-                          {childAge !== -1 &&
-                            (childAge === 0
+                        <SelectValue>
+                          {childAge === "-1"
+                            ? "select age"
+                            : childAge === "0"
                               ? "<1 Year"
-                              : childAge === 1
+                              : childAge === "1"
                                 ? "1 Year"
-                                : `${childAge} Years`)}
+                                : `${childAge} Years`}
                         </SelectValue>
                       </SelectTrigger>
                       <SelectContent>

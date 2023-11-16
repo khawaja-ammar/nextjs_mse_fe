@@ -17,7 +17,7 @@ export default function SiteSearch() {
   });
   const [numAdults, setNumAdults] = useState(1);
   const [numChildren, setNumChildren] = useState(0);
-  const [childAges, setChildAges] = useState<number[]>([]);
+  const [childAges, setChildAges] = useState<string[]>([]);
 
   useEffect(() => {
     // alert(`${date?.from}\n${date?.to}`);
