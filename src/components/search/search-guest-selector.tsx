@@ -133,7 +133,6 @@ export function SearchGuestSelector({
                         setChildAges((prev) => {
                           const newArr = [...prev];
                           newArr[i] = val;
-                          console.log(newArr);
                           return newArr;
                         });
                       }}
