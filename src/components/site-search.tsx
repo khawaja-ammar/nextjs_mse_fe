@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Input } from "@/components/ui/input";
+import { FormEvent, useState } from "react";
 import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
 import { SearchDatePicker } from "./search/search-date-picker";
 import { SearchGuestSelector } from "./search/search-guest-selector";
 import { SearchInput } from "./search/search-input";
+import { Button } from "./ui/button";
 
 export default function SiteSearch() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -19,14 +19,27 @@ export default function SiteSearch() {
   const [numChildren, setNumChildren] = useState(0);
   const [childAges, setChildAges] = useState<string[]>([]);
 
-  useEffect(() => {
-    // alert(`${date?.from}\n${date?.to}`);
-  }, [date]);
+  function submitSearch(e: FormEvent<HTMLFormElement>) {
+    // NOTE: ZOD CAN VERIFY THESE??
+    e.preventDefault();
+    // console.log(
+    //   `Query: ${searchQuery}\nDateFrom: ${date?.from}\nDateTill: ${date?.to}\nNum Adults: ${numAdults}\nNum Children: ${numChildren}`,
+    // );
+    // for (let i = 0; i < childAges.length; i++) {
+    //   console.log(childAges[i]);
+    // }
+
+    // TODO: from BE or direct servers??
+    // const res = fetch()
+  }
 
   return (
-    <div className="bg-primary  pb-10">
+    <div className="bg-accent-foreground  pb-10">
       <h1 className="text-2xl text-white">Compare best options</h1>
-      <div className="mx-auto flex max-w-[80%] items-center justify-center py-4">
+      <form
+        className="mx-auto flex max-w-[80%] items-center justify-center py-4"
+        onSubmit={(e) => submitSearch(e)}
+      >
         <SearchInput
           className="rounded-r-none"
           value={searchQuery}
@@ -39,7 +52,7 @@ export default function SiteSearch() {
           setDate={setDate}
         />
         <SearchGuestSelector
-          className="rounded-l-none"
+          className="rounded-none"
           numAdults={numAdults}
           setNumAdults={setNumAdults}
           numChildren={numChildren}
@@ -47,7 +60,10 @@ export default function SiteSearch() {
           childAges={childAges}
           setChildAges={setChildAges}
         />
-      </div>
+        <Button type="submit" className="rounded-l-none">
+          Submit
+        </Button>
+      </form>
     </div>
   );
 }

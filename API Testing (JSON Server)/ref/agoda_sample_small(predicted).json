@@ -1,0 +1,60 @@
+{
+  "searchId": "123456",
+  "properties": [
+    {
+      "propertyId": 12157,
+      "propertyName": "Medhufushi Island Resort",
+      "translatedPropertyName": "Medhufushi Island Resort",
+      "currency": "PKR",
+      "rooms": [
+        {
+          "id": "3169573",
+          "name": "1 Bedroom Seaview Villa - Room Only",
+          "standardtranslation": "1 Bedroom Seaview Villa - Room Only",
+          "ex": "1125.00",
+          "inc": "1324.00",
+          "url": "http://www.agoda.com/partners/partnersearch.aspx.....",
+          "ratecategoryid": "24490",
+          "blockid": "360520fd-7d46-8a12-fbcf-893f746470fa",
+          "freewifi": "false",
+          "freecancellation": "false",
+          "booknowpaylater": "false",
+          "breakfastincluded": "false",
+          "promotionsavings": "375.00",
+          "promotiontext": "Super Saver",
+          "promotiontypetext": "Early Bird"
+        },
+        {
+          "id": "3169573",
+          "name": "1 Bedroom Seaview Villa - Room with Breakfast",
+          "standardtranslation": "1 Bedroom Seaview Villa - Room Only",
+          "ex": "1500.00",
+          "inc": "1694.00",
+          "benefit": "1,10",
+          "url": "http://www.agoda.com/partners/partnersearch.aspx.....",
+          "ratecategoryid": "24490",
+          "blockid": "6351ab38-9aee-99ab-9eeb-91fa85726462",
+          "freewifi": "false",
+          "freecancellation": "false",
+          "booknowpaylater": "false",
+          "breakfastincluded": "true"
+        },
+        {
+          "id": "3169573",
+          "name": "1 Bedroom Seaview Villa - Room with Internet",
+          "standardtranslation": "1 Bedroom Seaview Villa - Room with Internet",
+          "ex": "1550.00",
+          "inc": "1750.00",
+          "benefit": "1,10",
+          "url": "http://www.agoda.com/partners/partnersearch.aspx.....",
+          "ratecategoryid": "24491",
+          "blockid": "0e3e576b-d230-25dc-be3c-95dffe5d6059",
+          "freewifi": "true",
+          "freecancellation": "false",
+          "booknowpaylater": "false",
+          "breakfastincluded": "false"
+        }
+      ]
+    }
+  ]
+}

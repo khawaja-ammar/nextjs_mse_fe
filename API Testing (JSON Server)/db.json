@@ -1,0 +1,62 @@
+{
+  "searchId": "12345",
+  "properties": [
+    {
+      "api": "agoda",
+      "id": "69204",
+      "name": "The Rock Hua Hin Beach Resort &amp; Spa",
+      "lat": "",
+      "long": "",
+      "rooms": [
+        {
+          "id": "3169573",
+          "name": "1 Bedroom Seaview Villa - Room Only",
+          "standardtranslation": "1 Bedroom Seaview Villa - Room Only",
+          "ex": "1125.00",
+          "inc": "1324.00",
+          "url": "http://www.agoda.com/partners/partnersearch.aspx.....",
+          "ratecategoryid": "24490",
+          "blockid": "360520fd-7d46-8a12-fbcf-893f746470fa",
+          "freewifi": "false",
+          "freecancellation": "false",
+          "booknowpaylater": "false",
+          "breakfastincluded": "false",
+          "promotionsavings": "375.00",
+          "promotiontext": "Super Saver",
+          "promotiontypetext": "Early Bird",
+          "charges": [
+            {
+              "id": "255",
+              "type": "Roundtrip Speed Boat Transfer Fee",
+              "amount": "208.00",
+              "option": "Excluded",
+              "orginalmethod": "PAPB"
+            },
+            {
+              "id": "278",
+              "type": "Green Tax",
+              "amount": "12.00",
+              "option": "Mandatory",
+              "orginalmethod": "PAPN"
+            }
+          ]
+        },
+        {
+          "id": "3169573",
+          "name": "1 Bedroom Seaview Villa - Room with Breakfast",
+          "standardtranslation": "1 Bedroom Seaview Villa - Room Only",
+          "ex": "1500.00",
+          "inc": "1694.00",
+          "benefit": "1,10",
+          "url": "http://www.agoda.com/partners/partnersearch.aspx.....",
+          "ratecategoryid": "24490",
+          "blockid": "6351ab38-9aee-99ab-9eeb-91fa85726462",
+          "freewifi": "false",
+          "freecancellation": "false",
+          "booknowpaylater": "false",
+          "breakfastincluded": "true"
+        }
+      ]
+    }
+  ]
+}
