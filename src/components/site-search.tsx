@@ -1,14 +1,20 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { usePathname } from "next/navigation";
 import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
 import { SearchDatePicker } from "./search/search-date-picker";
 import { SearchGuestSelector } from "./search/search-guest-selector";
 import { SearchInput } from "./search/search-input";
 import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 export default function SiteSearch() {
+  // TODO: For homepage use different CSS to cover whole page?
+  const pathname = usePathname();
+  const router = useRouter();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [date, setDate] = useState<DateRange | undefined>({
     // TODO: get date/timezone from the request location
@@ -22,6 +28,9 @@ export default function SiteSearch() {
   function submitSearch(e: FormEvent<HTMLFormElement>) {
     // NOTE: ZOD CAN VERIFY THESE??
     e.preventDefault();
+    if (searchQuery !== "") {
+      router.push(`/search/${searchQuery}`);
+    }
     // console.log(
     //   `Query: ${searchQuery}\nDateFrom: ${date?.from}\nDateTill: ${date?.to}\nNum Adults: ${numAdults}\nNum Children: ${numChildren}`,
     // );
@@ -29,12 +38,11 @@ export default function SiteSearch() {
     //   console.log(childAges[i]);
     // }
 
-    // TODO: from BE or direct servers??
-    // const res = fetch()
+    // TODO: fetch inside dynamic router after verifying the inputs are valid and complete
   }
 
   return (
-    <div className="bg-accent-foreground  pb-10">
+    <div className="bg-accent-foreground pb-10">
       <h1 className="text-2xl text-white">Compare best options</h1>
       <form
         className="mx-auto flex max-w-[80%] items-center justify-center py-4"
@@ -61,7 +69,7 @@ export default function SiteSearch() {
           setChildAges={setChildAges}
         />
         <Button type="submit" className="rounded-l-none">
-          Submit
+          Search
         </Button>
       </form>
     </div>

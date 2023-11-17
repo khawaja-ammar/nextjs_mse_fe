@@ -5,7 +5,7 @@ export default function SiteHeader() {
   return (
     <div>
       <MainNav />
-      <SiteSearch />
+      {/* <SiteSearch /> */}
     </div>
   );
 }
