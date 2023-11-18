@@ -18,8 +18,8 @@ import {
 } from "@/components/ui/select";
 
 // NOTE: CONSTANTS
-const MAX_ADULTS = 99;
-const MAX_CHILDREN = 99;
+const MAX_ADULTS = 15;
+const MAX_CHILDREN = 15;
 
 function makeNameString(numAdults: number, numChildren: number): string {
   if (numAdults + numChildren === 0) return "Guests";

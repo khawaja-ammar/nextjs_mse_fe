@@ -12,8 +12,8 @@ import { useRouter } from "next/navigation";
 
 export default function SiteSearch() {
   // TODO: For homepage use different CSS to cover whole page?
-  const pathname = usePathname();
   const router = useRouter();
+  const pathname = usePathname();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [date, setDate] = useState<DateRange | undefined>({
@@ -27,6 +27,7 @@ export default function SiteSearch() {
 
   function submitSearch(e: FormEvent<HTMLFormElement>) {
     // NOTE: ZOD CAN VERIFY THESE??
+    // TODO: fetch inside dynamic router after verifying the inputs are valid and complete
     e.preventDefault();
     if (searchQuery !== "") {
       router.push(`/search/${searchQuery}`);
@@ -37,41 +38,90 @@ export default function SiteSearch() {
     // for (let i = 0; i < childAges.length; i++) {
     //   console.log(childAges[i]);
     // }
-
-    // TODO: fetch inside dynamic router after verifying the inputs are valid and complete
   }
-
+  /*
+className={
+  pathname === "/" || pathname === "/search"
+    ? ""
+    : ""
+}
+*/
   return (
-    <div className="bg-accent-foreground pb-10">
-      <h1 className="text-2xl text-white">Compare best options</h1>
-      <form
-        className="mx-auto flex max-w-[80%] items-center justify-center py-4"
-        onSubmit={(e) => submitSearch(e)}
+    <div
+      className={
+        pathname === "/" || pathname === "/search"
+          ? " h-[90vh]   bg-accent-foreground"
+          : "bg-accent-foreground pb-10"
+      }
+    >
+      <div
+        className={
+          pathname === "/" || pathname === "/search"
+            ? "relative bottom-[10vh] flex h-full flex-col items-center justify-center"
+            : ""
+        }
       >
-        <SearchInput
-          className="rounded-r-none"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Where to?"
-        />
-        <SearchDatePicker
-          classNameButton="rounded-none"
-          date={date}
-          setDate={setDate}
-        />
-        <SearchGuestSelector
-          className="rounded-none"
-          numAdults={numAdults}
-          setNumAdults={setNumAdults}
-          numChildren={numChildren}
-          setNumChildren={setNumChildren}
-          childAges={childAges}
-          setChildAges={setChildAges}
-        />
-        <Button type="submit" className="rounded-l-none">
-          Search
-        </Button>
-      </form>
+        <h1
+          className={
+            pathname === "/" || pathname === "/search"
+              ? "text-2xl text-white"
+              : "hidden"
+          }
+        >
+          Compare best options ;)
+        </h1>
+        <form
+          className="flex w-full items-center justify-center py-4"
+          onSubmit={(e) => submitSearch(e)}
+        >
+          <SearchInput
+            className={
+              pathname === "/" || pathname === "/search"
+                ? "h-[50px] w-[312.5px] rounded-r-none text-xl"
+                : "h-[40px] w-[250px] rounded-r-none"
+            }
+            // className="rounded-r-none"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Where to?"
+          />
+          <SearchDatePicker
+            classNameButton={
+              pathname === "/" || pathname === "/search"
+                ? "h-[50px] w-[312.5px] rounded-none text-xl"
+                : "h-[40px] rounded-none w-[250px]"
+            }
+            // classNameButton="rounded-none"
+            date={date}
+            setDate={setDate}
+          />
+          <SearchGuestSelector
+            className={
+              pathname === "/" || pathname === "/search"
+                ? "h-[50px] w-[237.5px] rounded-none text-xl"
+                : "h-[40px] w-[190px] rounded-none"
+            }
+            // className="rounded-none"
+            numAdults={numAdults}
+            setNumAdults={setNumAdults}
+            numChildren={numChildren}
+            setNumChildren={setNumChildren}
+            childAges={childAges}
+            setChildAges={setChildAges}
+          />
+          <Button
+            type="submit"
+            className={
+              pathname === "/" || pathname === "/search"
+                ? "h-[50px] w-[137.5px] rounded-l-none text-xl"
+                : "h-[40px] w-[110px] rounded-l-none"
+            }
+            // className="rounded-l-none"
+          >
+            Search
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }

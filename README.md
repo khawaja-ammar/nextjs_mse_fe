@@ -11,5 +11,6 @@ Made in Nextjs (React)
 
 ## TO ADD
 
+- [ ] Add Scrolling to guest-selector
 - [ ] Add timezone calculation using the origin of request, adjust options in regards to their timezone not the server's
 - [ ] Make 2 Dynamic Paths, 1 for search response results, 1 for Google Hotel API redirected that fetches data from BE server
