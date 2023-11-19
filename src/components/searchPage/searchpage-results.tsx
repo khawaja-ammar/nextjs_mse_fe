@@ -1,6 +1,6 @@
 import { env } from "@/lib/env.mjs";
 import { SearchQueryResponse } from "@/types";
-import SearchResultCard from "./search-result-card";
+import SearchResultCard from "./searchpage-result-card";
 
 // Output promise to return SearchQueryResponse
 async function getSearchQueryResults(

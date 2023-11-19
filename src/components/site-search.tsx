@@ -4,9 +4,9 @@ import { FormEvent, useState } from "react";
 import { usePathname } from "next/navigation";
 import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
-import { SearchDatePicker } from "./search/search-date-picker";
-import { SearchGuestSelector } from "./search/search-guest-selector";
-import { SearchInput } from "./search/search-input";
+import { SearchDatePicker } from "./searchBar/search-date-picker";
+import { SearchGuestSelector } from "./searchBar/search-guest-selector";
+import { SearchInput } from "./searchBar/search-input";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 
@@ -48,16 +48,16 @@ className={
 */
   return (
     <div
-      className={
+      className={`z-[999] bg-accent-foreground ${
         pathname === "/" || pathname === "/search"
-          ? " h-[90vh]   bg-accent-foreground"
-          : "bg-accent-foreground pb-10"
-      }
+          ? "h-[calc(100vh-10rem)]"
+          : "sticky top-0"
+      }`}
     >
       <div
         className={
           pathname === "/" || pathname === "/search"
-            ? "relative bottom-[10vh] flex h-full flex-col items-center justify-center"
+            ? "relative bottom-[5rem] flex h-full flex-col items-center justify-center"
             : ""
         }
       >
@@ -71,7 +71,7 @@ className={
           Compare best options ;)
         </h1>
         <form
-          className="flex w-full items-center justify-center py-4"
+          className="flex w-full items-center justify-center py-8"
           onSubmit={(e) => submitSearch(e)}
         >
           <SearchInput
