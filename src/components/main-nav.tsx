@@ -12,9 +12,16 @@ export default function MainNav() {
 
   return (
     <nav
-      className={`flex h-20 items-center justify-between bg-accent-foreground text-xl text-white`}
+      className={`h-navbar flex items-center justify-between bg-accent-foreground text-xl text-white`}
     >
-      <Link href="/">Travel Mandi 🔥</Link>
+      <Link
+        href="/"
+        className={`${
+          pathname === "/" || pathname === "/search" ? "invisible" : ""
+        }`}
+      >
+        Travel Mandi 🔥
+      </Link>
       <div>Links</div>
     </nav>
   );

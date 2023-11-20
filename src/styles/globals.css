@@ -24,6 +24,10 @@
     --input: 220 13% 91%;
     --ring: 262.1 83.3% 57.8%;
     --radius: 1rem;
+
+    --height-navbar: 80px;
+    --height-searchbar: 104px;
+    --height-footer: 80px;
   }
 
   /* .dark {

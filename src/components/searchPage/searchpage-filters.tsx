@@ -4,15 +4,18 @@ import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { cn } from "@/lib/utils";
 
-const TOP_SPACE = "104px";
-
 type Props = {
   className?: string;
 };
 export default function SearchPageFilters({ className }: Props) {
   return (
     // TODO: Adjust top-0 to accomodate space
-    <div className={cn("sticky top-[104px] h-[calc(100vh-104px)]", className)}>
+    <div
+      className={cn(
+        "sticky top-[var(--height-searchbar)] h-[calc(100vh-var(--height-searchbar))]",
+        className,
+      )}
+    >
       <ScrollArea className="h-full w-48 border">
         <div className="flex flex-col items-center">
           <Button
