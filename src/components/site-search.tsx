@@ -72,7 +72,7 @@ className={
               : "hidden"
           }
         >
-          <p className="text-6xl text-white">TravelMandi 🔥</p>
+          <p className="text-6xl text-white">TravelMandi 🧳</p>
         </div>
         <form
           className="h-searchbar flex w-full items-center justify-center"

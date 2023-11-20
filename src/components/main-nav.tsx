@@ -20,7 +20,7 @@ export default function MainNav() {
           pathname === "/" || pathname === "/search" ? "invisible" : ""
         }`}
       >
-        Travel Mandi 🔥
+        TravelMandi 🧳
       </Link>
       <div>Links</div>
     </nav>
