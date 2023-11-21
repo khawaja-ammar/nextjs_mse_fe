@@ -1,6 +1,7 @@
 import { env } from "@/lib/env.mjs";
 import { SearchQueryResponse } from "@/types";
 import SearchResultCard from "./searchpage-result-card";
+import SearchPagePagination from "./searchpage-pagination";
 
 // Output promise to return SearchQueryResponse
 async function getSearchQueryResults(query: {
@@ -20,17 +21,20 @@ type Props = {
   };
 };
 export default async function SearchResults({ query }: Props) {
-  // console.log("calling BE", query);
   const result = await getSearchQueryResults(query);
   return (
-    <div className="flex flex-col items-center gap-4">
-      {result.properties.map((property, i) => (
-        <SearchResultCard
-          key={i}
-          property={property}
-          currency={result.currency}
-        />
-      ))}
-    </div>
+    <>
+      <div className="flex flex-col items-center gap-4">
+        {result.properties.map((property, i) => (
+          <SearchResultCard
+            key={i}
+            property={property}
+            currency={result.currency}
+          />
+        ))}
+      </div>
+      {/* TODO: Pagination Component that links to other pages? */}
+      <SearchPagePagination />
+    </>
   );
 }
