@@ -28,6 +28,8 @@
     --height-navbar: 80px;
     --height-searchbar: 80px;
     --height-footer: 80px;
+
+    --height-searchpage-space: 4rem;
   }
 
   /* .dark {

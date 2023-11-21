@@ -1,5 +1,7 @@
 "use client";
 
+import { env } from "@/lib/env.mjs";
+
 import { FormEvent, useState } from "react";
 import { usePathname } from "next/navigation";
 import { DateRange } from "react-day-picker";
@@ -32,8 +34,13 @@ export default function SiteSearch() {
     // NOTE: ZOD CAN VERIFY THESE??
     // TODO: fetch inside dynamic router after verifying the inputs are valid and complete
     e.preventDefault();
+
+    const paramURL = new URL(`${env.NEXT_PUBLIC_SITE_URL}/search/hotels`);
+    paramURL.searchParams.append("q", searchQuery);
+    paramURL.searchParams.append("frm", "date1");
+    paramURL.searchParams.append("to", "date2");
     if (searchQuery !== "") {
-      router.push(`/search/${searchQuery}`);
+      router.push(paramURL.href);
     }
     // console.log(
     //   `Query: ${searchQuery}\nDateFrom: ${date?.from}\nDateTill: ${date?.to}\nNum Adults: ${numAdults}\nNum Children: ${numChildren}`,
@@ -42,6 +49,7 @@ export default function SiteSearch() {
     //   console.log(childAges[i]);
     // }
   }
+
   /*
 className={
   pathname === "/" || pathname === "/search"
@@ -49,6 +57,7 @@ className={
     : ""
 }
 */
+
   return (
     <div
       className={`z-[999] bg-accent-foreground ${
@@ -75,7 +84,7 @@ className={
           <p className="text-6xl text-white">TravelMandi 🧳</p>
         </div>
         <form
-          className="h-searchbar flex w-full items-center justify-center"
+          className="flex h-searchbar w-full items-center justify-center"
           onSubmit={(e) => submitSearch(e)}
         >
           <SearchInput
@@ -85,9 +94,8 @@ className={
                   SEARCH_BAR_HEIGHT_EXTENDED
                 : "w-[250px] rounded-r-none" + SEARCH_BAR_HEIGHT_BASE
             }
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Where to?"
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
           />
           <SearchDatePicker
             classNameButton={

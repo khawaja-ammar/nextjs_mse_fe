@@ -3,10 +3,8 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Search as SearchIcon } from "lucide-react";
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
-
-const SearchInput = React.forwardRef<HTMLInputElement, InputProps>(
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+const SearchInputComponent = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
     return (
       <div className="flex items-center">
@@ -24,6 +22,23 @@ const SearchInput = React.forwardRef<HTMLInputElement, InputProps>(
     );
   },
 );
-SearchInput.displayName = "Input";
+SearchInputComponent.displayName = "Input";
 
-export { SearchInput };
+type Props = {
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  className?: string;
+};
+export function SearchInput({ searchQuery, setSearchQuery, className }: Props) {
+  return (
+    <div>
+      <SearchInputComponent
+        placeholder="Where to?"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className={className}
+      />
+      {/* Add search results popover? */}
+    </div>
+  );
+}

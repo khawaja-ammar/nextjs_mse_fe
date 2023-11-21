@@ -20,7 +20,7 @@ export default function SearchPageFilters({ className }: Props) {
         <div className="flex flex-col items-center">
           <Button
             variant="ghost"
-            className="self-center text-primary hover:text-primary"
+            className="h-searchpage_space self-center text-primary hover:text-primary"
           >
             <span className="flex items-center gap-2">
               <SlidersHorizontal />

@@ -69,6 +69,7 @@ module.exports = {
         navbar: "var(--height-navbar)",
         searchbar: "var(--height-searchbar)",
         footer: "var(--height-footer)",
+        searchpage_space: "var(--height-searchpage-space)",
       },
     },
   },

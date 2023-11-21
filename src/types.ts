@@ -1,8 +1,7 @@
 export type SearchQueryRequest = {
-  currency: string;
-  searchQuery: string;
-  checkInDate: Date;
-  checkOutDate: Date;
+  q: string; //Query
+  frm: Date; //From Date
+  to: Date; //To Date
 };
 
 // v1

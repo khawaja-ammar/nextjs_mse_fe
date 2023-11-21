@@ -8,6 +8,7 @@ Made in Nextjs (React)
 
 - [ ] Implement proper forms using Shadcn-form/react-hooks-form
 - [ ] Fix the calender, add validity checks etc
+- [ ] Use Tanstack Query?
 
 ## TO ADD
 
