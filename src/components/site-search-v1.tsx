@@ -33,7 +33,7 @@ export default function SiteSearch() {
     // TODO: fetch inside dynamic router after verifying the inputs are valid and complete
     e.preventDefault();
 
-    const paramURL = new URL(`${window.location.href}/search/hotels`);
+    const paramURL = new URL(`${window.location.origin}/search/hotels`);
     paramURL.searchParams.append("q", searchQuery);
     paramURL.searchParams.append("frm", "date1");
     paramURL.searchParams.append("to", "date2");

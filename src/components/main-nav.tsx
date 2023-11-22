@@ -26,16 +26,16 @@ export default function MainNav() {
       <div
         className={` ${
           pathname === "/" || pathname === "/search"
-            ? "relative left-[calc(100vw/4)] top-[calc((100vh-var(--height-navbar)-var(--height-footer))/2)] flex flex-col items-center gap-4"
+            ? "relative left-[] top-[calc((100vh-var(--height-navbar)-var(--height-footer))/2)] flex flex-col items-center gap-4"
             : "flex items-center gap-4"
         }`}
       >
         <Link
           href="/"
-          className={`text-xl text-white ${
+          className={`text-white ${
             pathname === "/" || pathname === "/search"
               ? "pointer-events-none text-7xl"
-              : ""
+              : "text-xl"
           }`}
         >
           TravelMandi 🧳

@@ -30,6 +30,8 @@
     --height-footer: 80px;
 
     --height-searchpage-space: 4rem;
+
+    --width-searchbar: 1000px;
   }
 
   /* .dark {
