@@ -27,9 +27,15 @@ SearchInputComponent.displayName = "Input";
 type Props = {
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  setGiveSearchSuggestions: React.Dispatch<React.SetStateAction<boolean>>;
   className?: string;
 };
-export function SearchInput({ searchQuery, setSearchQuery, className }: Props) {
+export function SearchInput({
+  searchQuery,
+  setSearchQuery,
+  setGiveSearchSuggestions,
+  className,
+}: Props) {
   return (
     <div>
       <SearchInputComponent
@@ -37,8 +43,13 @@ export function SearchInput({ searchQuery, setSearchQuery, className }: Props) {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         className={className}
+        onFocus={() => {
+          setGiveSearchSuggestions(true);
+        }}
+        onBlur={() => {
+          setGiveSearchSuggestions(false);
+        }}
       />
-      {/* Add search results popover? */}
     </div>
   );
 }

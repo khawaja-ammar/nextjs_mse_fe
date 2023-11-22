@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import SiteSearch from "./site-search-v2";
+import SiteSearch from "./site-search";
 
 // TODO:
 // - Add language and currency selector (after automatically figuring out where you are)

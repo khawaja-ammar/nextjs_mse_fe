@@ -9,6 +9,7 @@ import { SearchGuestSelector } from "./searchBar/search-guest-selector";
 import { SearchInput } from "./searchBar/search-input";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
+import SearchSuggester from "./searchBar/search-suggester";
 
 const SEARCH_BAR_HEIGHT_BASE = " h-[40px]";
 const SEARCH_BAR_HEIGHT_EXTENDED = " h-[50px]";
@@ -27,11 +28,14 @@ export default function SiteSearch() {
   const [numAdults, setNumAdults] = useState(1);
   const [numChildren, setNumChildren] = useState(0);
   const [childAges, setChildAges] = useState<string[]>([]);
+  const [giveSearchSuggestions, setGiveSearchSuggestions] = useState(false);
 
   function submitSearch(e: FormEvent<HTMLFormElement>) {
     // NOTE: ZOD CAN VERIFY THESE??
     // TODO: fetch inside dynamic router after verifying the inputs are valid and complete
     e.preventDefault();
+
+    setGiveSearchSuggestions(false);
 
     const paramURL = new URL(`${window.location.origin}/search/hotels`);
     paramURL.searchParams.append("q", searchQuery);
@@ -94,6 +98,7 @@ className={
             }
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            setGiveSearchSuggestions={setGiveSearchSuggestions}
           />
           <SearchDatePicker
             classNameButton={
@@ -131,6 +136,7 @@ className={
             Search
           </Button>
         </form>
+        {giveSearchSuggestions && <SearchSuggester />}
       </div>
     </div>
   );
