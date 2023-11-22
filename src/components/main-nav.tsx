@@ -26,7 +26,7 @@ export default function MainNav() {
       <div
         className={` ${
           pathname === "/" || pathname === "/search"
-            ? "relative left-[] top-[calc((100vh-var(--height-navbar)-var(--height-footer))/2)] flex flex-col items-center gap-4"
+            ? "relative left-[calc(calc(100vw-var(--width-searchbar))/2)] top-[calc((100vh-var(--height-navbar)-var(--height-footer))/2)] flex flex-col items-center gap-4"
             : "flex items-center gap-4"
         }`}
       >
