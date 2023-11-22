@@ -1,3 +1,5 @@
+import "./src/lib/env.mjs";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async rewrites() {
@@ -10,4 +12,5 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
+// module.exports = nextConfig;

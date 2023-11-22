@@ -1,7 +1,5 @@
 "use client";
 
-import { env } from "@/lib/env.mjs";
-
 import { FormEvent, useState } from "react";
 import { usePathname } from "next/navigation";
 import { DateRange } from "react-day-picker";
@@ -35,7 +33,7 @@ export default function SiteSearch() {
     // TODO: fetch inside dynamic router after verifying the inputs are valid and complete
     e.preventDefault();
 
-    const paramURL = new URL(`${env.NEXT_PUBLIC_SITE_URL}/search/hotels`);
+    const paramURL = new URL(`${window.location.href}/search/hotels`);
     paramURL.searchParams.append("q", searchQuery);
     paramURL.searchParams.append("frm", "date1");
     paramURL.searchParams.append("to", "date2");
