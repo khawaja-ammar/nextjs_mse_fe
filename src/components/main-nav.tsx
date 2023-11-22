@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import SiteSearch from "./site-search-v2";
 
 // TODO:
 // - Add language and currency selector (after automatically figuring out where you are)
@@ -12,17 +13,36 @@ export default function MainNav() {
 
   return (
     <nav
-      className={`h-navbar flex items-center justify-between bg-accent-foreground text-xl text-white`}
+      className={`z-[999] flex max-h-[var(--height-navbar)] items-center justify-between bg-accent-foreground ${
+        pathname === "/" || pathname === "/search" ? "" : "sticky top-0"
+      }`}
+      // flex h-navbar items-center justify-between
+      // className={`z-[999] bg-accent-foreground ${
+      //   pathname === "/" || pathname === "/search"
+      //     ? "h-[calc(100vh-var(--height-navbar)-var(--height-footer))]"
+      //     : "sticky top-0"
+      // }`}
     >
-      <Link
-        href="/"
-        className={`${
-          pathname === "/" || pathname === "/search" ? "invisible" : ""
+      <div
+        className={` ${
+          pathname === "/" || pathname === "/search"
+            ? "relative left-[calc(100vw/4)] top-[calc((100vh-var(--height-navbar)-var(--height-footer))/2)] flex flex-col items-center gap-4"
+            : "flex items-center gap-4"
         }`}
       >
-        TravelMandi 🧳
-      </Link>
-      <div>Links</div>
+        <Link
+          href="/"
+          className={`text-xl text-white ${
+            pathname === "/" || pathname === "/search"
+              ? "pointer-events-none text-7xl"
+              : ""
+          }`}
+        >
+          TravelMandi 🧳
+        </Link>
+        <SiteSearch />
+      </div>
+      <div className="text-xl text-white">Links</div>
     </nav>
   );
 }

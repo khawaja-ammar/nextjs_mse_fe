@@ -2,9 +2,6 @@
 
 export default function Home() {
   return (
-    <></>
-    // <main className="">
-    //   <div></div>
-    // </main>
+    <div className="h-[calc(100vh-var(--height-navbar)-var(--height-footer))] bg-accent-foreground"></div>
   );
 }
