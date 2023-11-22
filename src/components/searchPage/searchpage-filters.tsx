@@ -20,7 +20,7 @@ export default function SearchPageFilters({
         className,
       )}
     >
-      <ScrollArea className="h-full w-48 border">
+      <ScrollArea className="h-full border">
         <div className="flex flex-col items-center">
           <Button
             variant="ghost"

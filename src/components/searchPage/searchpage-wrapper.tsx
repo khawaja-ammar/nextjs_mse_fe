@@ -4,6 +4,7 @@ import * as React from "react";
 import SearchPageFilters from "./searchpage-filters";
 import { Filter as FilterIcon, SlidersHorizontal } from "lucide-react";
 import { Button } from "../ui/button";
+import SearchPageMap from "./searchpage-map";
 
 export default function SearchPageWrapper({
   searchParams,
@@ -16,16 +17,16 @@ export default function SearchPageWrapper({
   const [displayFilters, setDisplayFilters] = React.useState(true);
 
   return (
-    <div className="flex">
+    <div className="flex gap-4">
       {displayFilters && (
         <SearchPageFilters
-          className="basis-1/3"
+          className="basis-1/5"
           setDisplayFilters={setDisplayFilters}
         />
       )}
 
-      <div className="flex basis-1/3 flex-col items-center pb-[var(--height-searchpage-space)]">
-        <div className="h-searchpage_space flex items-center text-2xl">
+      <div className="flex basis-2/5 flex-col items-center pb-[var(--height-searchpage-space)]">
+        <div className="flex h-searchpage_space items-center text-2xl">
           {!displayFilters && (
             <Button
               variant="ghost"
@@ -42,11 +43,7 @@ export default function SearchPageWrapper({
         </div>
         {children}
       </div>
-      <div className="basis-1/3">
-        <div className="h-searchpage_space flex items-center justify-center">
-          <p>MAP Toggle</p>
-        </div>
-      </div>
+      <SearchPageMap className="basis-2/5" />
     </div>
   );
 }

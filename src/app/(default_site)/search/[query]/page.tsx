@@ -1,6 +1,8 @@
 import { Suspense } from "react";
-import SearchResults from "@/components/searchPage/searchpage-results";
-import SearchResultsLoading from "@/components/searchPage/searchpage-results-loading";
+import {
+  SearchResults,
+  SearchResultsLoading,
+} from "@/components/searchPage/searchpage-results";
 import SearchPageWrapper from "@/components/searchPage/searchpage-wrapper";
 
 // TODO:
