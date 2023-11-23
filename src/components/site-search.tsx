@@ -10,9 +10,7 @@ import { SearchInput } from "./searchBar/search-input";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import SearchSuggester from "./searchBar/search-suggester";
-
-const SEARCH_BAR_HEIGHT_BASE = " h-[40px]";
-const SEARCH_BAR_HEIGHT_EXTENDED = " h-[50px]";
+import SearchAutosuggest from "./searchBar/search-autosuggest";
 
 export default function SiteSearch() {
   // TODO: For homepage use different CSS to cover whole page?
@@ -86,26 +84,25 @@ className={
           <p className="text-6xl text-white">TravelMandi 🧳</p>
         </div> */}
         <form
-          className="flex h-searchbar w-full items-center justify-center"
+          className="h-searchbarcontainer flex w-full items-center justify-center"
           onSubmit={(e) => submitSearch(e)}
         >
-          <SearchInput
+          <SearchAutosuggest value={searchQuery} setValue={setSearchQuery} />
+          {/* <SearchInput
             className={
               pathname === "/" || pathname === "/search"
-                ? "w-[312.5px] rounded-r-none text-xl" +
-                  SEARCH_BAR_HEIGHT_EXTENDED
-                : "w-[250px] rounded-r-none" + SEARCH_BAR_HEIGHT_BASE
+                ? "h-[var(--height-searchbar-extended)] w-[312.5px] rounded-r-none text-xl"
+                : "h-[var(--height-searchbar-base)] w-[250px] rounded-r-none"
             }
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
             setGiveSearchSuggestions={setGiveSearchSuggestions}
-          />
+          /> */}
           <SearchDatePicker
             classNameButton={
               pathname === "/" || pathname === "/search"
-                ? "w-[312.5px] rounded-none text-xl" +
-                  SEARCH_BAR_HEIGHT_EXTENDED
-                : "rounded-none w-[250px]" + SEARCH_BAR_HEIGHT_BASE
+                ? "w-[312.5px] rounded-none text-xl h-[var(--height-searchbar-extended)]"
+                : "rounded-none w-[250px] h-[var(--height-searchbar-base)]"
             }
             date={date}
             setDate={setDate}
@@ -113,9 +110,8 @@ className={
           <SearchGuestSelector
             className={
               pathname === "/" || pathname === "/search"
-                ? "w-[237.5px] rounded-none text-xl" +
-                  SEARCH_BAR_HEIGHT_EXTENDED
-                : "w-[190px] rounded-none" + SEARCH_BAR_HEIGHT_BASE
+                ? "h-[var(--height-searchbar-extended)] w-[237.5px] rounded-none text-xl"
+                : "h-[var(--height-searchbar-base)] w-[190px] rounded-none"
             }
             numAdults={numAdults}
             setNumAdults={setNumAdults}
@@ -128,9 +124,8 @@ className={
             type="submit"
             className={
               pathname === "/" || pathname === "/search"
-                ? "w-[137.5px] rounded-l-none text-xl" +
-                  SEARCH_BAR_HEIGHT_EXTENDED
-                : "w-[110px] rounded-l-none" + SEARCH_BAR_HEIGHT_BASE
+                ? "h-[var(--height-searchbar-extended)] w-[137.5px] rounded-l-none text-xl"
+                : "h-[var(--height-searchbar-base)] w-[110px] rounded-l-none"
             }
           >
             Search

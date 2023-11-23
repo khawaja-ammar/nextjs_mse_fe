@@ -82,7 +82,7 @@ className={
           <p className="text-6xl text-white">TravelMandi 🧳</p>
         </div>
         <form
-          className="flex h-searchbar w-full items-center justify-center"
+          className="h-searchbarcontainer flex w-full items-center justify-center"
           onSubmit={(e) => submitSearch(e)}
         >
           <SearchInput

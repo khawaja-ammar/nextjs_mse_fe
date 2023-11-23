@@ -26,7 +26,10 @@
     --radius: 1rem;
 
     --height-navbar: 80px;
-    --height-searchbar: 80px;
+    --height-searchbarcontainer: 80px;
+    --height-searchbar-base: 40px;
+    --height-searchbar-extended: 50px;
+
     --height-footer: 80px;
 
     --height-searchpage-space: 4rem;
@@ -64,4 +67,59 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.react-autosuggest__container {
+  @apply relative rounded-b-2xl;
+}
+
+.react-autosuggest__input {
+  @apply h-[var(--height-searchbar-extended)] w-[312.5px] !rounded-r-none;
+  /* width: 240px; */
+  border-radius: calc(var(--radius) - 2px);
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.react-autosuggest__input--focused {
+  /* @apply !border-primary; */
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+
+  /* border-radius: calc(var(--radius) - 2px); */
+  /* outline: none; */
+}
+
+.react-autosuggest__input--open {
+  border-radius: calc(var(--radius) - 2px);
+
+  /* border-bottom-left-radius: 0; */
+  /* border-bottom-right-radius: 0; */
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__suggestions-container--open {
+  @apply absolute block w-[312.5px] bg-background;
+  border-radius: calc(var(--radius) - 2px);
+  top: 51px;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: #ddd;
+  border-radius: calc(var(--radius) - 2px);
 }
