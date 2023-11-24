@@ -13,7 +13,7 @@ export default function MainNav() {
 
   return (
     <nav
-      className={`z-[999] flex max-h-[var(--height-navbar)] items-center justify-between bg-accent-foreground ${
+      className={`z-20 flex max-h-[var(--height-navbar)] items-center justify-between bg-accent-foreground ${
         pathname === "/" || pathname === "/search" ? "" : "sticky top-0"
       }`}
       // flex h-navbar items-center justify-between

@@ -12,14 +12,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-const NUM_CARD_SKELETONS = 4;
+const NUM_CARD_SKELETONS = 6;
 
 // Output promise to return SearchQueryResponse
 async function getSearchQueryResults(query: {
   [key: string]: string;
 }): Promise<SearchQueryResponse> {
   await new Promise((resolve) => setTimeout(resolve, 2000));
-  const res = await fetch(`${env.BE_URL}/test/jsonsearchquery`, {
+  const res = await fetch(`${env.BACKEND_URL}/test/jsonsearchquery`, {
     method: "GET",
     cache: "no-cache",
   });

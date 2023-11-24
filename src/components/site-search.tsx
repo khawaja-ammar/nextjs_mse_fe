@@ -6,11 +6,11 @@ import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
 import { SearchDatePicker } from "./searchBar/search-date-picker";
 import { SearchGuestSelector } from "./searchBar/search-guest-selector";
-import { SearchInput } from "./searchBar/search-input";
+// import { SearchInput } from "./searchBar/search-input";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import SearchSuggester from "./searchBar/search-suggester";
-import SearchAutosuggest from "./searchBar/search-autosuggest";
+import SearchAutoSuggest from "./searchBar/search-autosuggest";
 
 export default function SiteSearch() {
   // TODO: For homepage use different CSS to cover whole page?
@@ -84,10 +84,11 @@ className={
           <p className="text-6xl text-white">TravelMandi 🧳</p>
         </div> */}
         <form
-          className="h-searchbarcontainer flex w-full items-center justify-center"
+          className="flex h-searchbarcontainer w-full items-center justify-center"
           onSubmit={(e) => submitSearch(e)}
+          autoComplete="off"
         >
-          <SearchAutosuggest value={searchQuery} setValue={setSearchQuery} />
+          <SearchAutoSuggest value={searchQuery} setValue={setSearchQuery} />
           {/* <SearchInput
             className={
               pathname === "/" || pathname === "/search"

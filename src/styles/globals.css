@@ -74,27 +74,16 @@
 }
 
 .react-autosuggest__input {
-  @apply h-[var(--height-searchbar-extended)] w-[312.5px] !rounded-r-none;
-  /* width: 240px; */
+  @apply h-[var(--height-searchbar-extended)] w-[312.5px] !rounded-r-none border border-input bg-background px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground;
   border-radius: calc(var(--radius) - 2px);
-  padding: 10px 20px;
-  font-size: 16px;
 }
 
 .react-autosuggest__input--focused {
-  /* @apply !border-primary; */
-  outline: 2px solid hsl(var(--primary));
-  outline-offset: 2px;
-
-  /* border-radius: calc(var(--radius) - 2px); */
-  /* outline: none; */
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
 }
 
 .react-autosuggest__input--open {
   border-radius: calc(var(--radius) - 2px);
-
-  /* border-bottom-left-radius: 0; */
-  /* border-bottom-right-radius: 0; */
 }
 
 .react-autosuggest__suggestions-container {
