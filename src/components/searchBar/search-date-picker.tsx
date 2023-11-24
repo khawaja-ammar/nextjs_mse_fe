@@ -22,7 +22,7 @@ type Props = {
 
 export function SearchDatePicker({ classNameButton, date, setDate }: Props) {
   return (
-    <div className={cn("grid gap-2")}>
+    <div className="grid h-full gap-2">
       <Popover>
         <PopoverTrigger asChild>
           <Button

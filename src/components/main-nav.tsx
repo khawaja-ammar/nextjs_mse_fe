@@ -13,7 +13,7 @@ export default function MainNav() {
 
   return (
     <nav
-      className={`z-20 flex max-h-[var(--height-navbar)] items-center justify-between bg-accent-foreground ${
+      className={`z-20 flex h-[var(--height-navbar)] items-center justify-between bg-accent-foreground ${
         pathname === "/" || pathname === "/search" ? "" : "sticky top-0"
       }`}
       // flex h-navbar items-center justify-between
@@ -38,7 +38,10 @@ export default function MainNav() {
               : "text-xl"
           }`}
         >
-          TravelMandi 🧳
+          <p className="flex gap-2">
+            <span>TravelMandi</span>
+            <span>🧳</span>
+          </p>
         </Link>
         <SiteSearch />
       </div>

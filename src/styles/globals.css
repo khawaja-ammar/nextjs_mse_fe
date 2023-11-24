@@ -26,9 +26,7 @@
     --radius: 1rem;
 
     --height-navbar: 80px;
-    --height-searchbarcontainer: 80px;
-    --height-searchbar-base: 40px;
-    --height-searchbar-extended: 50px;
+    --height-searchbarcontainer: 45px;
 
     --height-footer: 80px;
 
@@ -70,11 +68,11 @@
 }
 
 .react-autosuggest__container {
-  @apply relative rounded-b-2xl;
+  @apply relative h-full w-[312.5px] rounded-b-2xl;
 }
 
 .react-autosuggest__input {
-  @apply h-[var(--height-searchbar-extended)] w-[312.5px] !rounded-r-none border border-input bg-background px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground;
+  @apply h-full w-full !rounded-r-none border border-input bg-background px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground;
   border-radius: calc(var(--radius) - 2px);
 }
 
@@ -93,7 +91,7 @@
 .react-autosuggest__suggestions-container--open {
   @apply absolute block w-[312.5px] bg-background;
   border-radius: calc(var(--radius) - 2px);
-  top: 51px;
+  top: 53px;
   z-index: 2;
 }
 
