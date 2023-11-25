@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+
 import {
   SearchResults,
   SearchResultsLoading,
@@ -6,12 +7,10 @@ import {
 import SearchPageWrapper from "@/components/searchPage/searchpage-wrapper";
 
 // TODO: Add validate search params (core (min required) params must be present)
-
-export default function SearchPage({
-  searchParams,
-}: {
+type Props = {
   searchParams: { [key: string]: string };
-}) {
+};
+export default function SearchPage({ searchParams }: Props) {
   // If basic params not complete
   // return <>Incomplete search; go back to home page or advance search page</>;
 
