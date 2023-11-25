@@ -5,19 +5,16 @@ import {
 } from "@/components/searchPage/searchpage-results";
 import SearchPageWrapper from "@/components/searchPage/searchpage-wrapper";
 
-// TODO:
-// - Add sort by, total hotels found and other such metrics
-// - Add Pagination
-// - Add filters bar on left on a scrollable space
-// - Add Maps
+// TODO: Add validate search params (core (min required) params must be present)
 
 export default function SearchPage({
-  params,
   searchParams,
 }: {
-  params: { query: string };
   searchParams: { [key: string]: string };
 }) {
+  // If basic params not complete
+  // return <>Incomplete search; go back to home page or advance search page</>;
+
   // NOTE: This key should be appended with all the searchParams so it suspends as data is being fetched
   const suspenseKey = `${searchParams.q}`;
   return (

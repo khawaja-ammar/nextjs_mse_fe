@@ -12,20 +12,10 @@ export default function MainNav() {
   const pathname = usePathname();
 
   return (
-    <nav
-      className={`z-20 flex h-[var(--height-navbar)] items-center justify-between bg-accent-foreground ${
-        pathname === "/" || pathname === "/search" ? "" : "sticky top-0"
-      }`}
-      // flex h-navbar items-center justify-between
-      // className={`z-[999] bg-accent-foreground ${
-      //   pathname === "/" || pathname === "/search"
-      //     ? "h-[calc(100vh-var(--height-navbar)-var(--height-footer))]"
-      //     : "sticky top-0"
-      // }`}
-    >
+    <nav className="sticky top-0 z-20 flex h-[var(--height-navbar)] items-center justify-between bg-accent-foreground">
       <div
         className={` ${
-          pathname === "/" || pathname === "/search"
+          pathname === "/"
             ? "relative left-[calc(calc(100vw-var(--width-searchbar))/2)] top-[calc((100vh-var(--height-navbar)-var(--height-footer))/2)] flex flex-col items-center gap-4"
             : "flex items-center gap-4"
         }`}
@@ -33,9 +23,7 @@ export default function MainNav() {
         <Link
           href="/"
           className={`text-white ${
-            pathname === "/" || pathname === "/search"
-              ? "pointer-events-none text-7xl"
-              : "text-xl"
+            pathname === "/" ? "pointer-events-none text-7xl" : "text-xl"
           }`}
         >
           <p className="flex gap-2">

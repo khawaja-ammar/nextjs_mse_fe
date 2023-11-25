@@ -29,7 +29,7 @@ export default function SiteSearch() {
     // TODO: fetch inside dynamic router after verifying the inputs are valid and complete
     e.preventDefault();
 
-    const paramURL = new URL(`${window.location.origin}/search/hotels`);
+    const paramURL = new URL(`${window.location.origin}/search`);
     paramURL.searchParams.append("q", searchQuery);
     paramURL.searchParams.append("frm", "date1");
     paramURL.searchParams.append("to", "date2");
@@ -53,7 +53,7 @@ export default function SiteSearch() {
       <SearchAutoSuggest value={searchQuery} setValue={setSearchQuery} />
       <SearchDatePicker
         classNameButton={
-          pathname === "/" || pathname === "/search"
+          pathname === "/"
             ? "w-[312.5px] rounded-none h-full"
             : "rounded-none w-[250px] h-full"
         }
@@ -62,7 +62,7 @@ export default function SiteSearch() {
       />
       <SearchGuestSelector
         className={
-          pathname === "/" || pathname === "/search"
+          pathname === "/"
             ? "h-full w-[237.5px] rounded-none"
             : "h-full w-[190px] rounded-none"
         }
@@ -76,7 +76,7 @@ export default function SiteSearch() {
       <Button
         type="submit"
         className={
-          pathname === "/" || pathname === "/search"
+          pathname === "/"
             ? "h-full w-[137.5px] rounded-l-none"
             : "h-full w-[110px] rounded-l-none"
         }

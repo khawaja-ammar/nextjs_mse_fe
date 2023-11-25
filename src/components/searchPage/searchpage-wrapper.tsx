@@ -6,6 +6,12 @@ import { Filter as FilterIcon, SlidersHorizontal } from "lucide-react";
 import { Button } from "../ui/button";
 import SearchPageMap from "./searchpage-map";
 
+// TODO:
+// - Add sort by, total hotels found and other such metrics
+// - Add Pagination
+// - Add filters bar on left on a scrollable space
+// - Add Maps
+
 export default function SearchPageWrapper({
   searchParams,
   children,
