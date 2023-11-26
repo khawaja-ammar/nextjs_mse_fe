@@ -1,10 +1,21 @@
 import { Suspense } from "react";
 
+import { env } from "@/lib/env.mjs";
 import {
   SearchResults,
   SearchResultsLoading,
 } from "@/components/searchPage/searchpage-results";
 import SearchPageWrapper from "@/components/searchPage/searchpage-wrapper";
+
+async function getSearchQueryResults(query: {
+  [key: string]: string;
+}): Promise<Response> {
+  return fetch(`${env.BACKEND_URL}/test/jsonsearchquery`, {
+    method: "GET",
+    cache: "no-cache",
+  });
+  // return res.json();
+}
 
 // TODO: Add validate search params (core (min required) params must be present)
 type Props = {
@@ -19,7 +30,10 @@ export default function SearchPage({ searchParams }: Props) {
   return (
     <SearchPageWrapper searchParams={searchParams}>
       <Suspense key={suspenseKey} fallback={<SearchResultsLoading />}>
-        <SearchResults query={searchParams} />
+        <SearchResults
+          // query={searchParams}
+          res={getSearchQueryResults(searchParams)}
+        />
       </Suspense>
     </SearchPageWrapper>
   );

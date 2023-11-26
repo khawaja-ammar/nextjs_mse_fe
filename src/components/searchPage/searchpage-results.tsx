@@ -1,4 +1,4 @@
-import { env } from "@/lib/env.mjs";
+// import { env } from "@/lib/env.mjs";
 import { SearchQueryResponse } from "@/types";
 import SearchResultCard from "./searchpage-result-card";
 import SearchPagePagination from "./searchpage-pagination";
@@ -15,25 +15,28 @@ import { Skeleton } from "@/components/ui/skeleton";
 const NUM_CARD_SKELETONS = 6;
 
 // Output promise to return SearchQueryResponse
-async function getSearchQueryResults(query: {
-  [key: string]: string;
-}): Promise<SearchQueryResponse> {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  const res = await fetch(`${env.BACKEND_URL}/test/jsonsearchquery`, {
-    method: "GET",
-    cache: "no-cache",
-  });
-  return res.json();
-}
+// async function getSearchQueryResults(query: {
+//   [key: string]: string;
+// }): Promise<SearchQueryResponse> {
+//   // await new Promise((resolve) => setTimeout(resolve, 2000));
+//   const res = await fetch(`${env.BACKEND_URL}/test/jsonsearchquery`, {
+//     method: "GET",
+//     cache: "no-cache",
+//   });
+//   return res.json();
+// }
 
 type Props = {
-  query: {
-    [key: string]: string;
-  };
+  // query: {
+  //   [key: string]: string;
+  // };
+  res: Promise<Response>;
 };
 
-export async function SearchResults({ query }: Props) {
-  const result = await getSearchQueryResults(query);
+export async function SearchResults({ res }: Props) {
+  // const result = await getSearchQueryResults(query);
+  const result: SearchQueryResponse = await (await res).json();
+
   return (
     <>
       <div className="flex flex-col items-center gap-4">
