@@ -26,15 +26,15 @@ export default function MainNav() {
         }`}
       >
         {pathname === "/" ? (
-          <h1 className="flex gap-2 text-7xl text-white">
-            <span>TravelMandi</span>
+          <h1 className="flex gap-[0.1em] text-7xl text-white">
             <span>🧳</span>
+            <span>TravelMandi</span>
           </h1>
         ) : (
           <Link href="/" className="text-xl text-white">
-            <p className="flex gap-2">
-              <span>TravelMandi</span>
+            <p className="flex gap-[0.1em]">
               <span>🧳</span>
+              <span>TravelMandi</span>
             </p>
           </Link>
         )}
