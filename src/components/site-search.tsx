@@ -36,12 +36,6 @@ export default function SiteSearch() {
     if (searchQuery !== "") {
       router.push(paramURL.href);
     }
-    // console.log(
-    //   `Query: ${searchQuery}\nDateFrom: ${date?.from}\nDateTill: ${date?.to}\nNum Adults: ${numAdults}\nNum Children: ${numChildren}`,
-    // );
-    // for (let i = 0; i < childAges.length; i++) {
-    //   console.log(childAges[i]);
-    // }
   }
 
   return (

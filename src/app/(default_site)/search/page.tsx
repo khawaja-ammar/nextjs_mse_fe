@@ -6,6 +6,7 @@ import {
   SearchResultsLoading,
 } from "@/components/searchPage/searchpage-results";
 import SearchPageWrapper from "@/components/searchPage/searchpage-wrapper";
+import SearchPageInvalid from "@/components/searchPage/searchpage-invalid";
 
 async function getSearchQueryResults(query: {
   [key: string]: string;
@@ -24,6 +25,7 @@ type Props = {
 export default function SearchPage({ searchParams }: Props) {
   // If basic params not complete
   // return <>Incomplete search; go back to home page or advance search page</>;
+  if (!searchParams.q || searchParams.q === "") return <SearchPageInvalid />;
 
   // NOTE: This key should be appended with all the searchParams so it suspends as data is being fetched
   const suspenseKey = `${searchParams.q}`;
