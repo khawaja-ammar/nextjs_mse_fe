@@ -1,4 +1,4 @@
-import { Filter as FilterIcon, SlidersHorizontal } from "lucide-react";
+import { SlidersHorizontal as FilterIcon } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
@@ -16,11 +16,11 @@ export default function SearchPageFilters({
     // TODO: Adjust top-0 to accomodate space
     <div
       className={cn(
-        "sticky top-[var(--height-navbar)] h-[calc(100vh-var(--height-navbar))]",
+        "sticky top-[var(--height-navbar)] h-[calc(100vh-var(--height-navbar))] bg-accent-foreground",
         className,
       )}
     >
-      <ScrollArea className="h-full border">
+      <ScrollArea className="h-full border-t border-primary text-white">
         <div className="flex flex-col items-center">
           <Button
             variant="ghost"
@@ -28,7 +28,7 @@ export default function SearchPageFilters({
             onClick={() => setDisplayFilters(false)}
           >
             <span className="flex items-center gap-2">
-              <SlidersHorizontal />
+              <FilterIcon />
               <span>Hide filters</span>
             </span>
           </Button>

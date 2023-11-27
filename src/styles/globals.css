@@ -89,7 +89,7 @@
 }
 
 .react-autosuggest__suggestions-container--open {
-  @apply absolute block w-[312.5px] bg-background;
+  @apply absolute block w-[312.5px] bg-background shadow-md;
   border-radius: calc(var(--radius) - 2px);
   top: 53px;
   z-index: 2;
