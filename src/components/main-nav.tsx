@@ -8,6 +8,11 @@ import SiteSearch from "./site-search";
 // - Add language and currency selector (after automatically figuring out where you are)
 // - Menu with help/support/contact page
 
+const NavLinks = [
+  { name: "Blogs", href: "/blogs" },
+  { name: "Contact", href: "/contact" },
+];
+
 export default function MainNav() {
   const pathname = usePathname();
 
@@ -20,20 +25,26 @@ export default function MainNav() {
             : "flex items-center gap-4"
         }`}
       >
-        <Link
-          href="/"
-          className={`text-white ${
-            pathname === "/" ? "pointer-events-none text-7xl" : "text-xl"
-          }`}
-        >
-          <p className="flex gap-2">
+        {pathname === "/" ? (
+          <h1 className="flex gap-2 text-7xl text-white">
             <span>TravelMandi</span>
             <span>🧳</span>
-          </p>
-        </Link>
+          </h1>
+        ) : (
+          <Link href="/" className="text-xl text-white">
+            <p className="flex gap-2">
+              <span>TravelMandi</span>
+              <span>🧳</span>
+            </p>
+          </Link>
+        )}
         <SiteSearch />
       </div>
-      <div className="text-xl text-white">Links</div>
+      <div className="flex gap-8 text-xl text-white">
+        {NavLinks.map((NavLink, i) => (
+          <p key={i}>{NavLink.name}</p>
+        ))}
+      </div>
     </nav>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
 import { SearchDatePicker } from "./searchBar/search-date-picker";
@@ -13,8 +13,9 @@ import SearchAutoSuggest from "./searchBar/search-autosuggest";
 export default function SiteSearch() {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   const [date, setDate] = useState<DateRange | undefined>({
     // TODO: get date/timezone from the request location
     from: addDays(new Date(), 7),
