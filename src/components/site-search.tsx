@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { addDays } from "date-fns";
+import { addDays, differenceInDays, format } from "date-fns";
 import { SearchDatePicker } from "./searchBar/search-date-picker";
 // import { SearchDatePicker } from "./searchBar/search-date-picker-old";
 import { SearchGuestSelector } from "./searchBar/search-guest-selector";
@@ -36,7 +36,7 @@ export default function SiteSearch() {
   const [childAges, setChildAges] = useState<string[]>([]);
 
   useEffect(() => {
-    // TODO: Maybe splite useEffects for each set state
+    // TODO: Maybe split useEffects for each set state
     setSearchQuery(searchParams.get("q") || "");
     setNumAdults(parseInt(searchParams.get("adlts") || "1"));
     setNumChildren(parseInt(searchParams.get("chld") || "0"));
@@ -49,12 +49,15 @@ export default function SiteSearch() {
 
     const paramURL = new URL(`${window.location.origin}/search`);
     paramURL.searchParams.append("q", searchQuery);
-    paramURL.searchParams.append("frm", "date1");
-    paramURL.searchParams.append("to", "date2");
-    paramURL.searchParams.append("adlts", numAdults.toString());
+    paramURL.searchParams.append("frm", format(fromDate, "P"));
+    paramURL.searchParams.append(
+      "dur",
+      differenceInDays(toDate, fromDate).toString(),
+    );
+    paramURL.searchParams.append("adlt", numAdults.toString());
     paramURL.searchParams.append("chld", numChildren.toString());
     if (numChildren > 0) {
-      paramURL.searchParams.append("chld", JSON.stringify(childAges));
+      paramURL.searchParams.append("chldAge", JSON.stringify(childAges));
     }
 
     if (searchQuery !== "") {
@@ -78,11 +81,11 @@ export default function SiteSearch() {
         MIN_DAYS_TRIP={MIN_DAYS_TRIP}
         MAX_DAYS_TRIP={MAX_DAYS_TRIP}
         MAX_DAYS_ADVANCE_BOOKING={MAX_DAYS_ADVANCE_BOOKING}
-        // classNameButton={
-        //   pathname === "/"
-        //     ? "w-[312.5px] rounded-none h-full"
-        //     : "rounded-none w-[250px] h-full"
-        // }
+        classNameButton={
+          pathname === "/"
+            ? "w-[150px] rounded-none h-full"
+            : "rounded-none w-[150px] h-full"
+        }
       />
       {/* <SearchDatePicker
         classNameButton={

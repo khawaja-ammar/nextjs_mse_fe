@@ -27,8 +27,10 @@ export default function SearchPage({ searchParams }: Props) {
   // return <>Incomplete search; go back to home page or advance search page</>;
   if (!searchParams.q || searchParams.q === "") return <SearchPageInvalid />;
 
-  // NOTE: This key should be appended with all the searchParams so it suspends as data is being fetched
-  const suspenseKey = `${searchParams.q}`;
+  let suspenseKey = "";
+  for (let key in searchParams) {
+    suspenseKey += searchParams[key];
+  }
   return (
     <SearchPageWrapper searchParams={searchParams}>
       <Suspense key={suspenseKey} fallback={<SearchResultsLoading />}>

@@ -3,7 +3,7 @@
 import * as React from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
-import { addDays, subDays } from "date-fns";
+import { addDays } from "date-fns";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -23,6 +23,7 @@ type Props = {
   MIN_DAYS_TRIP: number;
   MAX_DAYS_TRIP: number;
   MAX_DAYS_ADVANCE_BOOKING: number;
+  classNameButton: string;
 };
 export function SearchDatePicker({
   fromDate,
@@ -33,14 +34,13 @@ export function SearchDatePicker({
   MIN_DAYS_TRIP,
   MAX_DAYS_TRIP,
   MAX_DAYS_ADVANCE_BOOKING,
+  classNameButton,
 }: Props) {
-  // const [fromDate, setFromDate] = React.useState<Date>(MIN_START_DATE);
-  // const [toDate, setToDate] = React.useState<Date>(MIN_END_DATE);
-
   React.useEffect(() => {
     if (addDays(fromDate, MIN_DAYS_TRIP) > toDate) {
       setToDate(addDays(fromDate, MIN_DAYS_TRIP));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fromDate]);
 
   return (
@@ -51,11 +51,12 @@ export function SearchDatePicker({
             variant={"outline"}
             className={cn(
               "w-[280px] justify-start text-left font-normal",
+              classNameButton,
               !fromDate && "text-muted-foreground",
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {fromDate ? format(fromDate, "PPP") : <span>Pick a date</span>}
+            {fromDate ? format(fromDate, "PP") : <span>Pick a date</span>}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0">
@@ -78,11 +79,12 @@ export function SearchDatePicker({
             variant={"outline"}
             className={cn(
               "w-[280px] justify-start text-left font-normal",
+              classNameButton,
               !toDate && "text-muted-foreground",
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {toDate ? format(toDate, "PPP") : <span>Pick a date</span>}
+            {toDate ? format(toDate, "PP") : <span>Pick a date</span>}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0">
