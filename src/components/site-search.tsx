@@ -1,14 +1,19 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
 import { SearchDatePicker } from "./searchBar/search-date-picker";
+// import { SearchDatePicker } from "./searchBar/search-date-picker-old";
 import { SearchGuestSelector } from "./searchBar/search-guest-selector";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import SearchAutoSuggest from "./searchBar/search-autosuggest";
+
+const MIN_START_DATE = addDays(new Date(), 7);
+const MIN_DAYS_TRIP = 1;
+const MAX_DAYS_TRIP = 999;
+const MAX_DAYS_ADVANCE_BOOKING = 999;
 
 export default function SiteSearch() {
   const router = useRouter();
@@ -16,14 +21,26 @@ export default function SiteSearch() {
   const searchParams = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
-  const [date, setDate] = useState<DateRange | undefined>({
-    // TODO: get date/timezone from the request location
-    from: addDays(new Date(), 7),
-    to: addDays(new Date(), 8),
-  });
+  // const [date, setDate] = useState<DateRange | undefined>({
+  //   from: addDays(new Date(), 7),
+  //   to: addDays(new Date(), 8),
+  // });
+  // TODO: get date/timezone from the request location
+  const [fromDate, setFromDate] = useState<Date>(MIN_START_DATE);
+  const [toDate, setToDate] = useState<Date>(
+    addDays(MIN_START_DATE, MIN_DAYS_TRIP),
+  );
+
   const [numAdults, setNumAdults] = useState(1);
   const [numChildren, setNumChildren] = useState(0);
   const [childAges, setChildAges] = useState<string[]>([]);
+
+  useEffect(() => {
+    // TODO: Maybe splite useEffects for each set state
+    setSearchQuery(searchParams.get("q") || "");
+    setNumAdults(parseInt(searchParams.get("adlts") || "1"));
+    setNumChildren(parseInt(searchParams.get("chld") || "0"));
+  }, [searchParams]);
 
   function submitSearch(e: FormEvent<HTMLFormElement>) {
     // NOTE: ZOD CAN VERIFY THESE??
@@ -34,6 +51,12 @@ export default function SiteSearch() {
     paramURL.searchParams.append("q", searchQuery);
     paramURL.searchParams.append("frm", "date1");
     paramURL.searchParams.append("to", "date2");
+    paramURL.searchParams.append("adlts", numAdults.toString());
+    paramURL.searchParams.append("chld", numChildren.toString());
+    if (numChildren > 0) {
+      paramURL.searchParams.append("chld", JSON.stringify(childAges));
+    }
+
     if (searchQuery !== "") {
       router.push(paramURL.href);
     }
@@ -47,6 +70,21 @@ export default function SiteSearch() {
     >
       <SearchAutoSuggest value={searchQuery} setValue={setSearchQuery} />
       <SearchDatePicker
+        fromDate={fromDate}
+        setFromDate={setFromDate}
+        toDate={toDate}
+        setToDate={setToDate}
+        MIN_START_DATE={MIN_START_DATE}
+        MIN_DAYS_TRIP={MIN_DAYS_TRIP}
+        MAX_DAYS_TRIP={MAX_DAYS_TRIP}
+        MAX_DAYS_ADVANCE_BOOKING={MAX_DAYS_ADVANCE_BOOKING}
+        // classNameButton={
+        //   pathname === "/"
+        //     ? "w-[312.5px] rounded-none h-full"
+        //     : "rounded-none w-[250px] h-full"
+        // }
+      />
+      {/* <SearchDatePicker
         classNameButton={
           pathname === "/"
             ? "w-[312.5px] rounded-none h-full"
@@ -54,7 +92,7 @@ export default function SiteSearch() {
         }
         date={date}
         setDate={setDate}
-      />
+      /> */}
       <SearchGuestSelector
         className={
           pathname === "/"

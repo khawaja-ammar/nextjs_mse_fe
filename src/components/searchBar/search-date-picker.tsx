@@ -3,7 +3,7 @@
 import * as React from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
-import { DateRange } from "react-day-picker";
+import { addDays, subDays } from "date-fns";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -15,51 +15,89 @@ import {
 } from "@/components/ui/popover";
 
 type Props = {
-  classNameButton: string;
-  date: DateRange | undefined;
-  setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
+  fromDate: Date;
+  setFromDate: React.Dispatch<React.SetStateAction<Date>>;
+  toDate: Date;
+  setToDate: React.Dispatch<React.SetStateAction<Date>>;
+  MIN_START_DATE: Date;
+  MIN_DAYS_TRIP: number;
+  MAX_DAYS_TRIP: number;
+  MAX_DAYS_ADVANCE_BOOKING: number;
 };
+export function SearchDatePicker({
+  fromDate,
+  setFromDate,
+  toDate,
+  setToDate,
+  MIN_START_DATE,
+  MIN_DAYS_TRIP,
+  MAX_DAYS_TRIP,
+  MAX_DAYS_ADVANCE_BOOKING,
+}: Props) {
+  // const [fromDate, setFromDate] = React.useState<Date>(MIN_START_DATE);
+  // const [toDate, setToDate] = React.useState<Date>(MIN_END_DATE);
 
-export function SearchDatePicker({ classNameButton, date, setDate }: Props) {
+  React.useEffect(() => {
+    if (addDays(fromDate, MIN_DAYS_TRIP) > toDate) {
+      setToDate(addDays(fromDate, MIN_DAYS_TRIP));
+    }
+  }, [fromDate]);
+
   return (
-    <div className="grid h-full gap-2">
+    <>
       <Popover>
         <PopoverTrigger asChild>
           <Button
-            id="date"
             variant={"outline"}
             className={cn(
-              "w-[300px] justify-start text-left font-normal",
-              classNameButton,
-              !date && "text-muted-foreground",
+              "w-[280px] justify-start text-left font-normal",
+              !fromDate && "text-muted-foreground",
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {date?.from ? (
-              date.to ? (
-                <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
-                </>
-              ) : (
-                format(date.from, "LLL dd, y")
-              )
-            ) : (
-              <span>Pick a date</span>
-            )}
+            {fromDate ? format(fromDate, "PPP") : <span>Pick a date</span>}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
+        <PopoverContent className="w-auto p-0">
           <Calendar
+            mode="single"
+            selected={fromDate}
+            onSelect={setFromDate}
+            required
             initialFocus
-            mode="range"
-            defaultMonth={date?.from}
-            selected={date}
-            onSelect={setDate}
-            numberOfMonths={2}
+            defaultMonth={fromDate}
+            fromDate={MIN_START_DATE}
+            toDate={addDays(new Date(), MAX_DAYS_ADVANCE_BOOKING)}
           />
         </PopoverContent>
       </Popover>
-    </div>
+
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button
+            variant={"outline"}
+            className={cn(
+              "w-[280px] justify-start text-left font-normal",
+              !toDate && "text-muted-foreground",
+            )}
+          >
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            {toDate ? format(toDate, "PPP") : <span>Pick a date</span>}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0">
+          <Calendar
+            mode="single"
+            selected={toDate}
+            onSelect={setToDate}
+            required
+            initialFocus
+            defaultMonth={toDate}
+            fromDate={addDays(fromDate, MIN_DAYS_TRIP)}
+            toDate={addDays(fromDate, MAX_DAYS_TRIP)}
+          />
+        </PopoverContent>
+      </Popover>
+    </>
   );
 }

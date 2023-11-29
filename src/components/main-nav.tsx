@@ -21,23 +21,24 @@ export default function MainNav() {
       <div
         className={` ${
           pathname === "/"
-            ? "relative left-[calc(calc(100vw-var(--width-searchbar))/2)] top-[calc((100vh-var(--height-navbar)-var(--height-footer))/2)] flex flex-col items-center gap-4"
+            ? // ? "relative left-[calc(calc(100vw-var(--width-searchbar))/2)] top-[calc((100vh-var(--height-navbar)-var(--height-footer))/2)] flex flex-col items-center gap-4"
+              "invisible"
             : "flex items-center gap-4"
         }`}
       >
-        {pathname === "/" ? (
+        {/* {pathname === "/" ? (
           <h1 className="flex gap-[0.1em] text-7xl text-white">
             <span>🧳</span>
             <span>TravelMandi</span>
           </h1>
-        ) : (
-          <Link href="/" className="text-xl text-white">
-            <p className="flex gap-[0.1em]">
-              <span>🧳</span>
-              <span>TravelMandi</span>
-            </p>
-          </Link>
-        )}
+        ) : ( */}
+        <Link href="/" className="text-xl text-white">
+          <p className="flex gap-[0.1em]">
+            <span>🧳</span>
+            <span>TravelMandi</span>
+          </p>
+        </Link>
+        {/* )} */}
         <SiteSearch />
       </div>
       <div className="flex gap-8 text-xl text-white">
