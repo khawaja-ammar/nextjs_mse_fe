@@ -43,12 +43,12 @@ export default function SiteSearch() {
   }, [searchParams]);
 
   function submitSearch(e: FormEvent<HTMLFormElement>) {
-    // NOTE: ZOD CAN VERIFY THESE??
-    // TODO: fetch inside dynamic router after verifying the inputs are valid and complete
+    // TODO: VERIFY THESE (zod can?)
     e.preventDefault();
 
     const paramURL = new URL(`${window.location.origin}/search`);
     paramURL.searchParams.append("q", searchQuery);
+    // TODO: Convert the dates to UTC for server; response should be converted back to local time
     paramURL.searchParams.append("frm", format(fromDate, "P"));
     paramURL.searchParams.append(
       "dur",
@@ -87,15 +87,6 @@ export default function SiteSearch() {
             : "rounded-none w-[150px] h-full"
         }
       />
-      {/* <SearchDatePicker
-        classNameButton={
-          pathname === "/"
-            ? "w-[312.5px] rounded-none h-full"
-            : "rounded-none w-[250px] h-full"
-        }
-        date={date}
-        setDate={setDate}
-      /> */}
       <SearchGuestSelector
         className={
           pathname === "/"

@@ -6,7 +6,7 @@ Made in Nextjs (React)
 
 ## TO CHANGE
 
-- [ ] Fix the calender, add validity checks etc
+- [x] Fix the calender, add validity checks etc
 - [ ] Implement proper forms using Shadcn-form/react-hooks-form
 - [ ] Standardized API format (https://jsonapi.org/)
 
@@ -21,7 +21,6 @@ Made in Nextjs (React)
 - [ ] Add sitemap for google crawlers
 - [ ] Publish site to Google search console
 - [ ] SEO Optimizations for static + dynamic content
-
 
 ### Local Storage
 
