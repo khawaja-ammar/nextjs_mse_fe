@@ -15,25 +15,42 @@
   /* #FFFFFF */
   /* #FCFCFC (from my site) */
   :root {
-    --background: 0 0% 100%; /* #ffffff */
-    --foreground: 224 71.4% 4.1%; /* #030712 */
-    --card: 0 0% 100%; /* #ffffff */
-    --card-foreground: 224 71.4% 4.1%; /* #030712 */
-    --popover: 0 0% 100%; /* #ffffff */
-    --popover-foreground: 224 71.4% 4.1%; /* #030712 */
-    --primary: 262.1 83.3% 57.8%; /* #7c3aed */
-    --primary-foreground: 210 20% 98%; /* #f9fafb */
-    --secondary: 220 14.3% 95.9%; /* #f3f4f6 */
-    --secondary-foreground: 220.9 39.3% 11%; /* #111827 */
-    --muted: 220 14.3% 95.9%; /* #f3f4f6 */
-    --muted-foreground: 220 8.9% 46.1%; /* #6b7280 */
-    --accent: 220 14.3% 95.9%; /* #f3f4f6 */
-    --accent-foreground: 220.9 39.3% 11%; /* #111827 */
-    --destructive: 0 84.2% 60.2%; /* #ef4444 */
-    --destructive-foreground: 210 20% 98%; /* #f9fafb */
-    --border: 220 13% 91%; /*  #e5e7eb */
-    --input: 220 13% 91%; /*  #e5e7eb */
-    --ring: 262.1 83.3% 57.8%; /* #7c3aed */
+    /* #ffffff */
+    --background: 0 0% 100%;
+    --card: 0 0% 100%;
+    --popover: 0 0% 100%;
+
+    /* #030712 */
+    --foreground: 224 71.4% 4.1%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover-foreground: 224 71.4% 4.1%;
+
+    /* #ef4444 */
+    --destructive: 0 84.2% 60.2%;
+
+    /* #7c3aed */
+    --primary: 262.1 83.3% 57.8%;
+    --ring: 262.1 83.3% 57.8%;
+
+    /* #f9fafb */
+    --primary-foreground: 210 20% 98%;
+    --destructive-foreground: 210 20% 98%;
+
+    /* #f3f4f6 */
+    --secondary: 220 14.3% 95.9%;
+    --muted: 220 14.3% 95.9%;
+    --accent: 220 14.3% 95.9%;
+
+    /* #111827 */
+    --secondary-foreground: 220.9 39.3% 11%;
+    --accent-foreground: 220.9 39.3% 11%;
+    /* #6b7280 */
+    --muted-foreground: 220 8.9% 46.1%;
+
+    /*  #e5e7eb */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+
     --radius: 1rem;
 
     --height-navbar: 80px;
