@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SiteSearch from "./site-search";
@@ -26,19 +27,14 @@ export default function MainNav() {
             : "flex items-center gap-4"
         }`}
       >
-        {/* {pathname === "/" ? (
-          <h1 className="flex gap-[0.1em] text-7xl text-white">
-            <span>🧳</span>
-            <span>TravelMandi</span>
-          </h1>
-        ) : ( */}
         <Link href="/" className="text-xl text-white">
-          <p className="flex gap-[0.1em]">
-            <span>🧳</span>
-            <span>TravelMandi</span>
-          </p>
+          <Image
+            src="/images/logoText.svg"
+            width={200}
+            height={50}
+            alt="Travel Mandi logo and text"
+          />
         </Link>
-        {/* )} */}
         <SiteSearch />
       </div>
       <div className="flex gap-8 text-xl text-white">

@@ -1,8 +1,11 @@
 // import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Atkinson_Hyperlegible } from "next/font/google";
 import "@/styles/globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Atkinson_Hyperlegible({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 // export const metadata: Metadata = {
 //   title: "TravelMandi",
@@ -17,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head></head>
-      <body className={inter.className}>{children}</body>
+      <body className={font.className}>{children}</body>
     </html>
   );
 }
