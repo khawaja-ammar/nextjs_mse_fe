@@ -18,26 +18,23 @@ export default function MainNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-20 flex h-[var(--height-navbar)] items-center justify-between bg-accent-foreground">
+    <nav className="sticky top-0 z-20 flex h-[var(--height-navbar)] items-center justify-between border-b bg-secondary">
       <div
         className={` ${
-          pathname === "/"
-            ? // ? "relative left-[calc(calc(100vw-var(--width-searchbar))/2)] top-[calc((100vh-var(--height-navbar)-var(--height-footer))/2)] flex flex-col items-center gap-4"
-              "invisible"
-            : "flex items-center gap-4"
+          pathname === "/" ? "invisible" : "flex items-center gap-4"
         }`}
       >
-        <Link href="/" className="text-xl text-white">
+        <Link href="/">
           <Image
             src="/images/logoText.svg"
-            width={200}
-            height={50}
+            width={210}
+            height={45}
             alt="Travel Mandi logo and text"
           />
         </Link>
         <SiteSearch />
       </div>
-      <div className="flex gap-8 text-xl text-white">
+      <div className="flex gap-8 text-xl text-secondary-foreground">
         {NavLinks.map((NavLink, i) => (
           <p key={i}>{NavLink.name}</p>
         ))}

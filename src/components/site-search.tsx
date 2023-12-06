@@ -4,7 +4,6 @@ import { FormEvent, useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { addDays, differenceInDays, format } from "date-fns";
 import { SearchDatePicker } from "./searchBar/search-date-picker";
-// import { SearchDatePicker } from "./searchBar/search-date-picker-old";
 import { SearchGuestSelector } from "./searchBar/search-guest-selector";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
@@ -21,10 +20,6 @@ export default function SiteSearch() {
   const searchParams = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
-  // const [date, setDate] = useState<DateRange | undefined>({
-  //   from: addDays(new Date(), 7),
-  //   to: addDays(new Date(), 8),
-  // });
   // TODO: get date/timezone from the request location
   const [fromDate, setFromDate] = useState<Date>(MIN_START_DATE);
   const [toDate, setToDate] = useState<Date>(

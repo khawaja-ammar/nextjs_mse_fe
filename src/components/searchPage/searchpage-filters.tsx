@@ -16,21 +16,21 @@ export default function SearchPageFilters({
     // TODO: Adjust top-0 to accomodate space
     <div
       className={cn(
-        "sticky top-[var(--height-navbar)] h-[calc(100vh-var(--height-navbar))] bg-accent-foreground",
+        "sticky top-[var(--height-navbar)] h-[calc(100vh-var(--height-navbar))] bg-secondary",
         className,
       )}
     >
-      <ScrollArea className="h-full border-t border-primary text-white">
+      <ScrollArea className="h-full text-secondary-foreground">
         <div className="flex flex-col items-center">
           <Button
-            variant="ghost"
-            className="h-searchpage_space self-center text-primary hover:text-primary"
+            variant="default"
+            className="my-4 h-searchpage_space self-center"
             onClick={() => setDisplayFilters(false)}
           >
-            <span className="flex items-center gap-2">
-              <FilterIcon />
+            <p className="flex items-center gap-2">
+              <FilterIcon className="h-4 w-4" />
               <span>Hide filters</span>
-            </span>
+            </p>
           </Button>
           <Separator className="mx-auto w-[80%]" />
           <p>Hello</p>

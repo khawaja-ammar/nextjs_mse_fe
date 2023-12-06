@@ -3,15 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  /* Primary */
   /* #491447 russian purple 302 57% 18% */
 
-  /* #AE759F sky magenta 316 26% 57% */
+  /* Secondary */
+  /* #f3f4f6 */
 
-  /* WHITE FORE */
-  /* #F7F7FF ghost white 240 100% 98% */
-  /* #F1F1F1 (from my site) */
-
-  /* WHITE BG */
+  /* Background */
   /* #FFFFFF */
   /* #FCFCFC (from my site) */
   :root {
@@ -28,9 +26,9 @@
     /* #ef4444 */
     --destructive: 0 84.2% 60.2%;
 
-    /* #7c3aed */
-    --primary: 262.1 83.3% 57.8%;
-    --ring: 262.1 83.3% 57.8%;
+    /* #491447 */
+    --primary: 302 57% 18%;
+    --ring: 302 57% 18%;
 
     /* #f9fafb */
     --primary-foreground: 210 20% 98%;
@@ -101,10 +99,8 @@
 }
 
 .react-autosuggest__suggestions-container--open {
-  @apply absolute block w-[312.5px] bg-background shadow-md;
-  border-radius: calc(var(--radius) - 2px);
-  top: 53px;
-  z-index: 2;
+  @apply absolute z-50 block w-[312.5px] rounded-md border bg-popover text-popover-foreground shadow-md outline-none;
+  top: 50px;
 }
 
 .react-autosuggest__suggestions-list {
@@ -119,6 +115,5 @@
 }
 
 .react-autosuggest__suggestion--highlighted {
-  background-color: #ddd;
-  border-radius: calc(var(--radius) - 2px);
+  @apply rounded-md bg-secondary;
 }
