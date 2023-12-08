@@ -1,8 +1,8 @@
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Popover,
   PopoverContent,
@@ -64,110 +64,119 @@ export function SearchGuestSelector({
       </PopoverTrigger>
 
       <PopoverContent className="w-80">
-        <div className="grid gap-4">
-          <div className="space-y-2">
-            <h4 className="font-medium leading-none">Guests</h4>
-            <p className="text-sm text-muted-foreground">
-              Select how many adults and children
-            </p>
-          </div>
+        <ScrollArea
+          className={childAges.length > 0 ? "h-72 w-full" : "h-36 w-full"}
+        >
+          <div className="grid gap-4">
+            <div className="space-y-2">
+              <h4 className="font-medium leading-none">Guests</h4>
+              <p className="text-sm text-muted-foreground">
+                Select how many adults and children
+              </p>
+            </div>
 
-          <div className="grid gap-2">
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="numAdults">Adults</Label>
-              <div className="flex items-center gap-4">
-                <Button
-                  disabled={numAdults === 1}
-                  className="h-8 w-4 rounded-sm"
-                  onClick={() => setNumAdults((prev) => prev - 1)}
-                >
-                  -
-                </Button>
-                <Label id="numAdults">{numAdults}</Label>
-                <Button
-                  disabled={numAdults === MAX_ADULTS}
-                  className="h-8 w-4 rounded-sm"
-                  onClick={() => setNumAdults((prev) => prev + 1)}
-                >
-                  +
-                </Button>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 items-center gap-4">
-              <Label htmlFor="numChildren">Children</Label>
-              <div className="flex items-center gap-4">
-                <Button
-                  disabled={numChildren === 0}
-                  className="h-8 w-4 rounded-sm"
-                  onClick={() => {
-                    setNumChildren((prev) => prev - 1);
-                    setChildAges((prev) => prev.slice(0, -1));
-                  }}
-                >
-                  -
-                </Button>
-                <Label id="numChildren">{numChildren}</Label>
-                <Button
-                  disabled={numAdults === 0 || numChildren === MAX_CHILDREN}
-                  className="h-8 w-4 rounded-sm"
-                  onClick={() => {
-                    setNumChildren((prev) => prev + 1);
-                    setChildAges((prev) => [...prev, "-1"]);
-                  }}
-                >
-                  +
-                </Button>
-              </div>
-            </div>
-            <div className="flex flex-col gap-4">
-              {childAges.length > 0 &&
-                childAges.map((childAge, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between px-4"
+            <div className="grid gap-2">
+              <div className="grid grid-cols-2 items-center gap-4">
+                <Label htmlFor="numAdults">Adults</Label>
+                <div className="flex items-center gap-4">
+                  <Button
+                    disabled={numAdults === 1}
+                    className="h-8 w-4 rounded-sm"
+                    onClick={() => setNumAdults((prev) => prev - 1)}
                   >
-                    <Label>{`Child ${i + 1}`}</Label>
-                    <Select
-                      defaultValue="-1"
-                      onValueChange={(val) => {
-                        setChildAges((prev) => {
-                          const newArr = [...prev];
-                          newArr[i] = val;
-                          return newArr;
-                        });
-                      }}
+                    -
+                  </Button>
+                  <Label id="numAdults" className="w-2 text-center">
+                    {numAdults}
+                  </Label>
+                  <Button
+                    disabled={numAdults === MAX_ADULTS}
+                    className="h-8 w-4 rounded-sm"
+                    onClick={() => setNumAdults((prev) => prev + 1)}
+                  >
+                    +
+                  </Button>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 items-center gap-4">
+                <Label htmlFor="numChildren">Children</Label>
+                <div className="flex items-center gap-4">
+                  <Button
+                    disabled={numChildren === 0}
+                    className="h-8 w-4 rounded-sm"
+                    onClick={() => {
+                      setNumChildren((prev) => prev - 1);
+                      setChildAges((prev) => prev.slice(0, -1));
+                    }}
+                  >
+                    -
+                  </Button>
+                  <Label id="numChildren" className="w-2 text-center">
+                    {numChildren}
+                  </Label>
+                  <Button
+                    disabled={numAdults === 0 || numChildren === MAX_CHILDREN}
+                    className="h-8 w-4 rounded-sm"
+                    onClick={() => {
+                      setNumChildren((prev) => prev + 1);
+                      setChildAges((prev) => [...prev, "-1"]);
+                    }}
+                  >
+                    +
+                  </Button>
+                </div>
+              </div>
+              {childAges.length > 0 && (
+                <div className="flex flex-col gap-2 pt-2">
+                  {childAges.map((childAge, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center justify-between px-4"
                     >
-                      <SelectTrigger className="w-[140px]">
-                        <SelectValue>
-                          {childAge === "-1"
-                            ? "select age"
-                            : childAge === "0"
-                              ? "<1 Year"
-                              : childAge === "1"
-                                ? "1 Year"
-                                : `${childAge} Years`}
-                        </SelectValue>
-                      </SelectTrigger>
-                      <SelectContent>
-                        {[
-                          0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
-                          16, 17,
-                        ].map((i) => (
-                          <SelectItem key={i} value={i.toString()}>
-                            {i === 0
-                              ? "<1 Year"
-                              : i === 1
-                                ? "1 Year"
-                                : `${i} Years`}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                ))}
+                      <Label>{`Child ${i + 1}`}</Label>
+                      <Select
+                        defaultValue="-1"
+                        onValueChange={(val) => {
+                          setChildAges((prev) => {
+                            const newArr = [...prev];
+                            newArr[i] = val;
+                            return newArr;
+                          });
+                        }}
+                      >
+                        <SelectTrigger className="w-[140px]">
+                          <SelectValue>
+                            {childAge === "-1"
+                              ? "select age"
+                              : childAge === "0"
+                                ? "<1 Year"
+                                : childAge === "1"
+                                  ? "1 Year"
+                                  : `${childAge} Years`}
+                          </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent>
+                          {[
+                            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+                            15, 16, 17,
+                          ].map((i) => (
+                            <SelectItem key={i} value={i.toString()}>
+                              {i === 0
+                                ? "<1 Year"
+                                : i === 1
+                                  ? "1 Year"
+                                  : `${i} Years`}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
-        </div>
+        </ScrollArea>
       </PopoverContent>
     </Popover>
   );

@@ -32,8 +32,8 @@ export default function SearchPageFilters({
               <span>Hide filters</span>
             </p>
           </Button>
-          <Separator className="mx-auto w-[80%]" />
-          <p>Hello</p>
+          <Separator className="mx-auto" />
+          {/* <p>Hello</p> */}
         </div>
       </ScrollArea>
     </div>
