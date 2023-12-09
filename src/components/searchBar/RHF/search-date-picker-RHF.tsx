@@ -15,10 +15,16 @@ import {
 } from "@/components/ui/popover";
 
 type Props = {
-  fromDate: Date;
-  setFromDate: React.Dispatch<React.SetStateAction<Date>>;
-  toDate: Date;
-  setToDate: React.Dispatch<React.SetStateAction<Date>>;
+  dates: {
+    fromDate: Date;
+    toDate: Date;
+  };
+  setDates: React.Dispatch<
+    React.SetStateAction<{
+      fromDate: Date;
+      toDate: Date;
+    }>
+  >;
   MIN_START_DATE: Date;
   MIN_DAYS_TRIP: number;
   MAX_DAYS_TRIP: number;
@@ -26,22 +32,24 @@ type Props = {
   classNameButton: string;
 };
 export function SearchDatePicker({
-  fromDate,
-  setFromDate,
-  toDate,
-  setToDate,
+  dates,
+  setDates,
   MIN_START_DATE,
-  MAX_DAYS_ADVANCE_BOOKING,
   MIN_DAYS_TRIP,
   MAX_DAYS_TRIP,
+  MAX_DAYS_ADVANCE_BOOKING,
   classNameButton,
 }: Props) {
   React.useEffect(() => {
-    if (addDays(fromDate, MIN_DAYS_TRIP) > toDate) {
-      setToDate(addDays(fromDate, MIN_DAYS_TRIP));
+    if (addDays(dates.fromDate, MIN_DAYS_TRIP) > dates.toDate) {
+      // setToDate(addDays(dates.fromDate, MIN_DAYS_TRIP));
+      setDates((prev) => ({
+        ...prev,
+        toDate: addDays(dates.fromDate, MIN_DAYS_TRIP),
+      }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fromDate]);
+  }, [dates.fromDate]);
 
   return (
     <>
@@ -52,21 +60,31 @@ export function SearchDatePicker({
             className={cn(
               "w-[280px] justify-start text-left font-normal",
               classNameButton,
-              !fromDate && "text-muted-foreground",
+              !dates.fromDate && "text-muted-foreground",
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {fromDate ? format(fromDate, "PP") : <span>Pick a date</span>}
+            {dates.fromDate ? (
+              format(dates.fromDate, "PP")
+            ) : (
+              <span>Pick a date</span>
+            )}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0">
           <Calendar
             mode="single"
-            selected={fromDate}
-            onSelect={(val) => setFromDate(val!)}
+            selected={dates.fromDate}
+            onSelect={(val) => {
+              // setFromDate
+              setDates((prev) => ({
+                ...prev,
+                fromDate: val!,
+              }));
+            }}
             required
             initialFocus
-            defaultMonth={fromDate}
+            defaultMonth={dates.fromDate}
             fromDate={MIN_START_DATE}
             toDate={addDays(new Date(), MAX_DAYS_ADVANCE_BOOKING)}
           />
@@ -80,23 +98,33 @@ export function SearchDatePicker({
             className={cn(
               "w-[280px] justify-start text-left font-normal",
               classNameButton,
-              !toDate && "text-muted-foreground",
+              !dates.toDate && "text-muted-foreground",
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
-            {toDate ? format(toDate, "PP") : <span>Pick a date</span>}
+            {dates.toDate ? (
+              format(dates.toDate, "PP")
+            ) : (
+              <span>Pick a date</span>
+            )}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0">
           <Calendar
             mode="single"
-            selected={toDate}
-            onSelect={(val) => setToDate(val!)}
+            selected={dates.toDate}
+            onSelect={(val) => {
+              // setToDate
+              setDates((prev) => ({
+                ...prev,
+                toDate: val!,
+              }));
+            }}
             required
             initialFocus
-            defaultMonth={toDate}
-            fromDate={addDays(fromDate, MIN_DAYS_TRIP)}
-            toDate={addDays(fromDate, MAX_DAYS_TRIP)}
+            defaultMonth={dates.toDate}
+            fromDate={addDays(dates.fromDate, MIN_DAYS_TRIP)}
+            toDate={addDays(dates.fromDate, MAX_DAYS_TRIP)}
           />
         </PopoverContent>
       </Popover>

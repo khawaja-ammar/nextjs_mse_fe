@@ -23,7 +23,7 @@ type Props = {
   searchParams: { [key: string]: string };
 };
 export default function SearchPage({ searchParams }: Props) {
-  // If basic params not complete
+  // TODO: If basic params not complete
   // return <>Incomplete search; go back to home page or advance search page</>;
   if (!searchParams.q || searchParams.q === "") return <SearchPageInvalid />;
 

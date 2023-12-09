@@ -1,44 +1,75 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
-import { addDays, differenceInDays, format } from "date-fns";
-import { SearchDatePicker } from "./searchBar/search-date-picker";
-import { SearchGuestSelector } from "./searchBar/search-guest-selector";
-import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
-import SearchAutoSuggest from "./searchBar/search-autosuggest";
+import { usePathname, useSearchParams } from "next/navigation";
 
+import { addDays, differenceInDays, format } from "date-fns";
+
+import { Button } from "../ui/button";
+import SearchAutoSuggest from "./search-autosuggest";
+import { SearchDatePicker } from "./search-date-picker";
+import { SearchGuestSelector } from "./search-guest-selector";
+
+const MIN_ADULTS = 1;
+const MAX_ADULTS = 15;
+const MIN_CHILDREN = 0;
+const MAX_CHILDREN = 15;
+const MAX_CHILDREN_PER_ADULT = 4;
 const MIN_START_DATE = addDays(new Date(), 7);
+const MAX_DAYS_ADVANCE_BOOKING = 999;
 const MIN_DAYS_TRIP = 1;
 const MAX_DAYS_TRIP = 999;
-const MAX_DAYS_ADVANCE_BOOKING = 999;
+// const MIN_ROOMS = 1;
+// const MAX_ROOMS = 12;
+// const MAX_GUESTS_PER_ROOM = 4;
 
 export default function SiteSearch() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  // Validate All Search params
+  const frmDateParam = searchParams.get("frm");
+  const durDateParam = searchParams.get("dur");
+  const fromDateInit = (() => {
+    if (frmDateParam && durDateParam) {
+      return new Date(frmDateParam);
+    } else {
+      return MIN_START_DATE;
+    }
+  })();
+  const toDateInit = (() => {
+    if (frmDateParam && durDateParam) {
+      return addDays(new Date(frmDateParam), parseInt(durDateParam));
+    }
+    return addDays(MIN_START_DATE, MIN_DAYS_TRIP);
+  })();
+
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
   // TODO: get date/timezone from the request location
-  const [fromDate, setFromDate] = useState<Date>(MIN_START_DATE);
-  const [toDate, setToDate] = useState<Date>(
-    addDays(MIN_START_DATE, MIN_DAYS_TRIP),
+  const [fromDate, setFromDate] = useState<Date>(fromDateInit);
+  const [toDate, setToDate] = useState<Date>(toDateInit);
+  const [numAdults, setNumAdults] = useState(
+    parseInt(searchParams.get("adlt") || `${MIN_ADULTS}`),
+  );
+  const [numChildren, setNumChildren] = useState(
+    parseInt(searchParams.get("chld") || `${MIN_CHILDREN}`),
+  );
+  const [childAges, setChildAges] = useState<number[]>(
+    JSON.parse(searchParams.get("chldAge") || "[]"),
   );
 
-  const [numAdults, setNumAdults] = useState(1);
-  const [numChildren, setNumChildren] = useState(0);
-  const [childAges, setChildAges] = useState<string[]>([]);
-
   useEffect(() => {
-    // TODO: Maybe split useEffects for each set state
     setSearchQuery(searchParams.get("q") || "");
-    setNumAdults(parseInt(searchParams.get("adlts") || "1"));
-    setNumChildren(parseInt(searchParams.get("chld") || "0"));
+    setFromDate(fromDateInit);
+    setToDate(toDateInit);
+    setNumAdults(parseInt(searchParams.get("adlt") || `${MIN_ADULTS}`));
+    setNumChildren(parseInt(searchParams.get("chld") || `${MIN_CHILDREN}`));
+    setChildAges(JSON.parse(searchParams.get("chldAge") || "[]"));
   }, [searchParams]);
 
   function submitSearch(e: FormEvent<HTMLFormElement>) {
-    // TODO: VERIFY THESE (zod can?)
     e.preventDefault();
 
     const paramURL = new URL(`${window.location.origin}/search`);
@@ -94,6 +125,12 @@ export default function SiteSearch() {
         setNumChildren={setNumChildren}
         childAges={childAges}
         setChildAges={setChildAges}
+        MIN_ADULTS={MIN_ADULTS}
+        MAX_ADULTS={MAX_ADULTS}
+        MIN_CHILDREN={MIN_CHILDREN}
+        MAX_CHILDREN={MAX_CHILDREN}
+        // TODO: MAX_CHILDREN_PER_ADULT logic
+        MAX_CHILDREN_PER_ADULT={MAX_CHILDREN_PER_ADULT}
       />
       <Button
         type="submit"

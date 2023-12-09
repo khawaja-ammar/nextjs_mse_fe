@@ -17,6 +17,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+// NOTE: CONSTANTS
+const MAX_ADULTS = 15;
+const MAX_CHILDREN = 15;
+
 function makeNameString(numAdults: number, numChildren: number): string {
   if (numAdults + numChildren === 0) return "Guests";
   if (numAdults + numChildren === 1) return "1 Adult";
@@ -34,43 +38,51 @@ function makeNameString(numAdults: number, numChildren: number): string {
 
 type Props = {
   className?: string;
-  numAdults: number;
-  setNumAdults: React.Dispatch<React.SetStateAction<number>>;
-  numChildren: number;
-  setNumChildren: React.Dispatch<React.SetStateAction<number>>;
-  childAges: number[];
-  setChildAges: React.Dispatch<React.SetStateAction<number[]>>;
-  MIN_ADULTS: number;
-  MAX_ADULTS: number;
-  MIN_CHILDREN: number;
-  MAX_CHILDREN: number;
-  MAX_CHILDREN_PER_ADULT: number;
+  // numAdults: number;
+  // setNumAdults: React.Dispatch<React.SetStateAction<number>>;
+  // numChildren: number;
+  // setNumChildren: React.Dispatch<React.SetStateAction<number>>;
+  // childAges: number[];
+  // setChildAges: React.Dispatch<React.SetStateAction<number[]>>;
+  guestsInfo: {
+    numAdults: number;
+    numChildren: number;
+    childAges: number[];
+  };
+  setGuestsInfo: React.Dispatch<
+    React.SetStateAction<{
+      numAdults: number;
+      numChildren: number;
+      childAges: number[];
+    }>
+  >;
 };
 
 export function SearchGuestSelector({
   className,
-  numAdults,
-  setNumAdults,
-  numChildren,
-  setNumChildren,
-  childAges,
-  setChildAges,
-  MIN_ADULTS,
-  MAX_ADULTS,
-  MIN_CHILDREN,
-  MAX_CHILDREN,
-  MAX_CHILDREN_PER_ADULT,
+  // numAdults,
+  // setNumAdults,
+  // numChildren,
+  // setNumChildren,
+  // childAges,
+  // setChildAges,
+  guestsInfo,
+  setGuestsInfo,
 }: Props) {
+  const [test, setTest] = React.useState<{ num: number; num2: number }>();
+
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button variant="outline" className={cn("", className)}>
-          {makeNameString(numAdults, numChildren)}
+          {makeNameString(guestsInfo.numAdults, guestsInfo.numChildren)}
         </Button>
       </PopoverTrigger>
 
       <PopoverContent className="w-80">
-        <ScrollArea className={childAges.length > 0 ? "h-72 w-full" : "w-full"}>
+        <ScrollArea
+          className={guestsInfo.childAges.length > 0 ? "h-72 w-full" : "w-full"}
+        >
           <div className="grid gap-4">
             <div className="space-y-2">
               <h4 className="font-medium leading-none">Guests</h4>
@@ -84,19 +96,31 @@ export function SearchGuestSelector({
                 <Label htmlFor="numAdults">Adults</Label>
                 <div className="flex items-center gap-4">
                   <Button
-                    disabled={numAdults === MIN_ADULTS}
+                    disabled={guestsInfo.numAdults === 1}
                     className="h-8 w-4 rounded-sm"
-                    onClick={() => setNumAdults((prev) => prev - 1)}
+                    onClick={() => {
+                      // setNumAdults((prev) => prev - 1)
+                      setGuestsInfo((prev) => ({
+                        ...prev,
+                        numAdults: prev.numAdults - 1,
+                      }));
+                    }}
                   >
                     -
                   </Button>
                   <Label id="numAdults" className="w-2 text-center">
-                    {numAdults}
+                    {guestsInfo.numAdults}
                   </Label>
                   <Button
-                    disabled={numAdults === MAX_ADULTS}
+                    disabled={guestsInfo.numAdults === MAX_ADULTS}
                     className="h-8 w-4 rounded-sm"
-                    onClick={() => setNumAdults((prev) => prev + 1)}
+                    onClick={() => {
+                      // setNumAdults((prev) => prev + 1)
+                      setGuestsInfo((prev) => ({
+                        ...prev,
+                        numAdults: prev.numAdults + 1,
+                      }));
+                    }}
                   >
                     +
                   </Button>
@@ -106,34 +130,46 @@ export function SearchGuestSelector({
                 <Label htmlFor="numChildren">Children</Label>
                 <div className="flex items-center gap-4">
                   <Button
-                    disabled={numChildren === MIN_CHILDREN}
+                    disabled={guestsInfo.numChildren === 0}
                     className="h-8 w-4 rounded-sm"
                     onClick={() => {
-                      setNumChildren((prev) => prev - 1);
-                      setChildAges((prev) => prev.slice(0, -1));
+                      // setNumChildren((prev) => prev - 1);
+                      // setChildAges((prev) => prev.slice(0, -1));
+                      setGuestsInfo((prev) => ({
+                        ...prev,
+                        numChildren: prev.numChildren - 1,
+                        childAges: prev.childAges.slice(0, -1),
+                      }));
                     }}
                   >
                     -
                   </Button>
                   <Label id="numChildren" className="w-2 text-center">
-                    {numChildren}
+                    {guestsInfo.numChildren}
                   </Label>
                   <Button
-                    // TODO: MAX_CHILDREN_PER_ADULT logic
-                    disabled={numAdults === 0 || numChildren === MAX_CHILDREN}
+                    disabled={
+                      guestsInfo.numAdults === 0 ||
+                      guestsInfo.numChildren === MAX_CHILDREN
+                    }
                     className="h-8 w-4 rounded-sm"
                     onClick={() => {
-                      setNumChildren((prev) => prev + 1);
-                      setChildAges((prev) => [...prev, -1]);
+                      // setNumChildren((prev) => prev + 1);
+                      // setChildAges((prev) => [...prev, -1]);
+                      setGuestsInfo((prev) => ({
+                        ...prev,
+                        numChildren: prev.numChildren + 1,
+                        childAges: [...prev.childAges, -1],
+                      }));
                     }}
                   >
                     +
                   </Button>
                 </div>
               </div>
-              {childAges.length > 0 && (
+              {guestsInfo.childAges.length > 0 && (
                 <div className="flex flex-col gap-2 pt-2">
-                  {childAges.map((childAge, i) => (
+                  {guestsInfo.childAges.map((childAge, i) => (
                     <div
                       key={i}
                       className="flex items-center justify-between px-4"
@@ -142,10 +178,18 @@ export function SearchGuestSelector({
                       <Select
                         defaultValue="-1"
                         onValueChange={(val) => {
-                          setChildAges((prev) => {
-                            const newArr = [...prev];
+                          // setChildAges((prev) => {
+                          //   const newArr = [...prev];
+                          //   newArr[i] = parseInt(val);
+                          //   return newArr;
+                          // });
+                          setGuestsInfo((prev) => {
+                            const newArr = [...prev.childAges];
                             newArr[i] = parseInt(val);
-                            return newArr;
+                            return {
+                              ...prev,
+                              childAges: newArr,
+                            };
                           });
                         }}
                       >

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import SiteSearch from "@/components/site-search";
+import SiteSearch from "@/components/searchBar/site-search";
 
 export default function Home() {
   return (
