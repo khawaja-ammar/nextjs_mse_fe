@@ -4,7 +4,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname, useSearchParams } from "next/navigation";
 
-import { addDays, differenceInDays, format } from "date-fns";
+import { addDays, differenceInCalendarDays, format } from "date-fns";
 
 import { Button } from "../ui/button";
 import SearchAutoSuggest from "./search-autosuggest";
@@ -67,18 +67,18 @@ export default function SiteSearch() {
     setNumAdults(parseInt(searchParams.get("adlt") || `${MIN_ADULTS}`));
     setNumChildren(parseInt(searchParams.get("chld") || `${MIN_CHILDREN}`));
     setChildAges(JSON.parse(searchParams.get("chldAge") || "[]"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   function submitSearch(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     const paramURL = new URL(`${window.location.origin}/search`);
     paramURL.searchParams.append("q", searchQuery);
     // TODO: Convert the dates to UTC for server; response should be converted back to local time
     paramURL.searchParams.append("frm", format(fromDate, "P"));
     paramURL.searchParams.append(
       "dur",
-      differenceInDays(toDate, fromDate).toString(),
+      differenceInCalendarDays(toDate, fromDate).toString(),
     );
     paramURL.searchParams.append("adlt", numAdults.toString());
     paramURL.searchParams.append("chld", numChildren.toString());
