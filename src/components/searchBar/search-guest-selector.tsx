@@ -70,7 +70,9 @@ export function SearchGuestSelector({
       </PopoverTrigger>
 
       <PopoverContent className="w-80">
-        <ScrollArea className={childAges.length > 0 ? "h-72 w-full" : "w-full"}>
+        <ScrollArea
+          className={childAges.length > 0 ? "h-72 w-full" : "h-auto w-full"}
+        >
           <div className="grid gap-4">
             <div className="space-y-2">
               <h4 className="font-medium leading-none">Guests</h4>
@@ -102,7 +104,7 @@ export function SearchGuestSelector({
                   </Button>
                 </div>
               </div>
-              <div className="grid grid-cols-2 items-center gap-4">
+              <div className="grid grid-cols-2 items-center gap-4 pb-1">
                 <Label htmlFor="numChildren">Children</Label>
                 <div className="flex items-center gap-4">
                   <Button
@@ -150,7 +152,7 @@ export function SearchGuestSelector({
                         }}
                       >
                         <SelectTrigger className="w-[140px]">
-                          <SelectValue>
+                          <SelectValue placeholder="select age">
                             {childAge === -1
                               ? "select age"
                               : childAge === 0

@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import SearchAutoSuggest from "./search-autosuggest";
 import { SearchDatePicker } from "./search-date-picker";
 import { SearchGuestSelector } from "./search-guest-selector";
+import { useToast } from "../ui/use-toast";
 
 const MIN_ADULTS = 1;
 const MAX_ADULTS = 15;
@@ -28,6 +29,7 @@ export default function SiteSearch() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { toast } = useToast();
 
   // Validate All Search params
   const frmDateParam = searchParams.get("frm");
@@ -72,21 +74,37 @@ export default function SiteSearch() {
 
   function submitSearch(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const paramURL = new URL(`${window.location.origin}/search`);
-    paramURL.searchParams.append("q", searchQuery);
-    // TODO: Convert the dates to UTC for server; response should be converted back to local time
-    paramURL.searchParams.append("frm", format(fromDate, "P"));
-    paramURL.searchParams.append(
-      "dur",
-      differenceInCalendarDays(toDate, fromDate).toString(),
-    );
-    paramURL.searchParams.append("adlt", numAdults.toString());
-    paramURL.searchParams.append("chld", numChildren.toString());
-    if (numChildren > 0) {
-      paramURL.searchParams.append("chldAge", JSON.stringify(childAges));
-    }
 
-    if (searchQuery !== "") {
+    // Validate Inputs
+    if (searchQuery.length < 1) {
+      toast({
+        variant: "destructive",
+        title: "Search missing",
+        description: "Please enter a search query",
+        duration: 5000,
+      });
+    } else if (childAges.includes(-1)) {
+      toast({
+        variant: "destructive",
+        title: "Child ages missing",
+        description: "Please pick ages of your children",
+        duration: 5000,
+      });
+    } else {
+      const paramURL = new URL(`${window.location.origin}/search`);
+      paramURL.searchParams.append("q", searchQuery);
+      // TODO: Convert the dates to UTC for server; response should be converted back to local time
+      paramURL.searchParams.append("frm", format(fromDate, "P"));
+      paramURL.searchParams.append(
+        "dur",
+        differenceInCalendarDays(toDate, fromDate).toString(),
+      );
+      paramURL.searchParams.append("adlt", numAdults.toString());
+      paramURL.searchParams.append("chld", numChildren.toString());
+      if (numChildren > 0) {
+        paramURL.searchParams.append("chldAge", JSON.stringify(childAges));
+      }
+
       router.push(paramURL.href);
     }
   }
