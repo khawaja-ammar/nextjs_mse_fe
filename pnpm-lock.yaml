@@ -97,6 +97,9 @@ devDependencies:
   eslint-config-next:
     specifier: 14.0.2
     version: 14.0.2(eslint@8.55.0)(typescript@5.3.3)
+  eslint-plugin-jsx-a11y:
+    specifier: ^6.8.0
+    version: 6.8.0(eslint@8.55.0)
   postcss:
     specifier: ^8.4.32
     version: 8.4.32

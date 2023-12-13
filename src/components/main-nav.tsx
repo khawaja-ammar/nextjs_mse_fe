@@ -19,11 +19,15 @@ export default function MainNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-20 h-[var(--height-navbar)] border-b bg-secondary">
-      <div className="mx-auto flex h-full items-center justify-between">
+    <nav className="sticky top-0 z-20 mx-auto h-[var(--height-navbar)] border-b bg-secondary text-secondary-foreground">
+      <div
+        className={`flex h-full items-center ${
+          pathname === "/" ? "justify-end" : "justify-between"
+        }`}
+      >
         <div
           className={` ${
-            pathname === "/" ? "invisible" : "flex items-center gap-4"
+            pathname === "/" ? "hidden" : "flex items-center gap-4"
           }`}
         >
           <Link href="/">
@@ -36,7 +40,7 @@ export default function MainNav() {
           </Link>
           <SiteSearch />
         </div>
-        <div className="flex gap-8 text-xl text-secondary-foreground">
+        <div className="flex gap-8 text-xl">
           {NavLinks.map((NavLink, i) => (
             <Link key={i} href={NavLink.href}>
               <p>{NavLink.name}</p>

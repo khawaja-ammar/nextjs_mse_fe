@@ -5,13 +5,10 @@
 @layer base {
   /* Primary */
   /* #491447 russian purple 302 57% 18% */
-
   /* Secondary */
   /* #f3f4f6 */
-
   /* Background */
   /* #FFFFFF */
-  /* #FCFCFC (from my site) */
   :root {
     /* #ffffff */
     --background: 0 0% 100%;

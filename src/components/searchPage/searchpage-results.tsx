@@ -41,7 +41,12 @@ export async function SearchResults({ req }: Props) {
       </>
     );
   } catch (err) {
-    return <>Server not responding: {err.message}</>;
+    if (err instanceof Error) {
+      return <>Server not responding: {err.message}</>;
+    } else {
+      console.error("Error: ", err);
+      throw err;
+    }
   }
 }
 
