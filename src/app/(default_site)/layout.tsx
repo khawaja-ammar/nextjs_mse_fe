@@ -18,11 +18,13 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <SiteHeader />
-      <div className="min-h-[calc(100vh-var(--height-navbar)-var(--height-footer))]">
-        {children}
+      <div>
+        <SiteHeader />
+        <main className="min-h-[calc(100vh-var(--height-navbar)-var(--height-footer))]">
+          {children}
+        </main>
+        <SiteFooter />
       </div>
-      <SiteFooter />
     </>
   );
 }

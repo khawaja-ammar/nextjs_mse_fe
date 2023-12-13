@@ -4,7 +4,6 @@ export type SearchQueryRequest = {
   to: Date; //To Date
 };
 
-// v2
 export type Property = {
   // property_city_country: string; // TODO: ADD THIS
   property_ota: string;

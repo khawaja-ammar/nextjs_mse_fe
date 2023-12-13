@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SiteSearch from "./searchBar/site-search";
+import { Label } from "@/components/ui/label";
+
 // import { Languages } from "lucide-react";
 
 // TODO:
@@ -38,12 +40,19 @@ export default function MainNav() {
               alt="Travel Mandi logo and text"
             />
           </Link>
-          <SiteSearch />
+          {pathname === "/search" && <SiteSearch />}
         </div>
-        <div className="flex gap-8 text-xl">
+        <div className="flex gap-4">
           {NavLinks.map((NavLink, i) => (
             <Link key={i} href={NavLink.href}>
-              <p>{NavLink.name}</p>
+              <Label
+                className={`cursor-pointer p-3 text-xl ${
+                  pathname === NavLink.href &&
+                  "rounded-2xl bg-primary text-primary-foreground"
+                }`}
+              >
+                {NavLink.name}
+              </Label>
             </Link>
           ))}
           {/* <p>

@@ -1,6 +1,6 @@
 import { SearchQueryResponse } from "@/types";
 import SearchResultCard from "./searchpage-result-card";
-import SearchPagePagination from "./searchpage-pagination";
+// import SearchPagePagination from "./searchpage-pagination";
 
 import {
   Card,
@@ -37,7 +37,7 @@ export async function SearchResults({ req }: Props) {
           ))}
         </div>
         {/* TODO: Pagination Component that links to other pages? */}
-        <SearchPagePagination />
+        {/* <SearchPagePagination /> */}
       </>
     );
   } catch (err) {
