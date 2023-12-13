@@ -1,4 +1,3 @@
-// import { env } from "@/lib/env.mjs";
 import { SearchQueryResponse } from "@/types";
 import SearchResultCard from "./searchpage-result-card";
 import SearchPagePagination from "./searchpage-pagination";
@@ -14,44 +13,36 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 const NUM_CARD_SKELETONS = 6;
 
-// Output promise to return SearchQueryResponse
-// async function getSearchQueryResults(query: {
-//   [key: string]: string;
-// }): Promise<SearchQueryResponse> {
-//   // await new Promise((resolve) => setTimeout(resolve, 2000));
-//   const res = await fetch(`${env.BACKEND_URL}/test/jsonsearchquery`, {
-//     method: "GET",
-//     cache: "no-cache",
-//   });
-//   return res.json();
-// }
-
 type Props = {
-  // query: {
-  //   [key: string]: string;
-  // };
-  res: Promise<Response>;
+  req: Promise<Response>;
 };
 
-export async function SearchResults({ res }: Props) {
+export async function SearchResults({ req }: Props) {
   // const result = await getSearchQueryResults(query);
-  const result: SearchQueryResponse = await (await res).json();
-
-  return (
-    <>
-      <div className="flex flex-col items-center gap-4">
-        {result.properties.map((property, i) => (
-          <SearchResultCard
-            key={i}
-            property={property}
-            currency={result.currency}
-          />
-        ))}
-      </div>
-      {/* TODO: Pagination Component that links to other pages? */}
-      <SearchPagePagination />
-    </>
-  );
+  try {
+    const res = await req;
+    if (!res.ok) {
+      throw new Error();
+    }
+    const data: SearchQueryResponse = await res.json();
+    return (
+      <>
+        <div className="flex flex-col items-center gap-4">
+          {data.properties.map((property, i) => (
+            <SearchResultCard
+              key={i}
+              property={property}
+              currency={data.currency}
+            />
+          ))}
+        </div>
+        {/* TODO: Pagination Component that links to other pages? */}
+        <SearchPagePagination />
+      </>
+    );
+  } catch (err) {
+    return <>Server not responding: {err.message}</>;
+  }
 }
 
 export function SearchResultsLoading() {

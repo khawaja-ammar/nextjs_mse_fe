@@ -19,7 +19,9 @@ export default function RootLayout({
   return (
     <>
       <SiteHeader />
-      {children}
+      <div className="min-h-[calc(100vh-var(--height-navbar)-var(--height-footer))]">
+        {children}
+      </div>
       <SiteFooter />
     </>
   );

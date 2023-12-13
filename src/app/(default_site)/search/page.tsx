@@ -36,7 +36,7 @@ export default function SearchPage({ searchParams }: Props) {
       <Suspense key={suspenseKey} fallback={<SearchResultsLoading />}>
         <SearchResults
           // query={searchParams}
-          res={getSearchQueryResults(searchParams)}
+          req={getSearchQueryResults(searchParams)}
         />
       </Suspense>
     </SearchPageWrapper>

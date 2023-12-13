@@ -10,22 +10,6 @@ type Suggestion = {
   id: number;
   name: string;
 };
-// const suggestions = [
-//   { id: 1, name: "Company1" },
-//   { id: 2, name: "Company2" },
-//   { id: 3, name: "Company3" },
-//   { id: 4, name: "Company4" },
-//   { id: 5, name: "Company5" },
-//   { id: 6, name: "Company6" },
-//   { id: 7, name: "Company7" },
-// ];
-
-// const lowerCasedSuggestions = suggestions.map((suggestion) => {
-//   return {
-//     id: suggestion.id,
-//     name: suggestion.name.toLowerCase(),
-//   };
-// });
 
 type Props = {
   value: string;
@@ -36,22 +20,21 @@ export default function SearchAutoSuggest({ value, setValue }: Props) {
 
   // This function returns the list of suggestions
   async function fetchSuggestions(value: string) {
-    const res = await fetch(
-      `${env.NEXT_PUBLIC_AUTOSUGGEST_SERVICE_URL}/test/jsonautosuggest?q=${value}&max=${MAX_SUGGESTIONS}`,
-      {
-        method: "GET",
-        // cache: "no-store",
-      },
-    );
-    const data: Suggestion[] = await res.json();
-    setSuggestions(data);
+    try {
+      const res = await fetch(
+        `${env.NEXT_PUBLIC_AUTOSUGGEST_SERVICE_URL}/test/jsonautosuggest?q=${value}&max=${MAX_SUGGESTIONS}`,
+        {
+          method: "GET",
+          // cache: "no-store",
+        },
+      );
+      if (!res.ok) {
+      }
+      const data: Suggestion[] = await res.json();
+      setSuggestions(data);
+    } catch (err) {}
   }
 
-  // function getSuggestions(value: string) {
-  //   return lowerCasedSuggestions.filter((suggestion) =>
-  //     suggestion.name.includes(value.trim().toLowerCase()),
-  //   );
-  // }
   return (
     <AutoSuggest
       inputProps={{
@@ -69,11 +52,6 @@ export default function SearchAutoSuggest({ value, setValue }: Props) {
       }}
       getSuggestionValue={(suggestion) => suggestion.name}
       renderSuggestion={(suggestion) => <span>{suggestion.name}</span>}
-      // onSuggestionSelected={(_, { suggestionValue }) => {
-      // setValue
-      // console.log("Selected: " + suggestionValue)
-      // }}
-      // renderSuggestion dictates how struct of suggestions must be rendered
     />
   );
 }

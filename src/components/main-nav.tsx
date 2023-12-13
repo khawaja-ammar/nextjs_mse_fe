@@ -38,7 +38,9 @@ export default function MainNav() {
         </div>
         <div className="flex gap-8 text-xl text-secondary-foreground">
           {NavLinks.map((NavLink, i) => (
-            <p key={i}>{NavLink.name}</p>
+            <Link key={i} href={NavLink.href}>
+              <p>{NavLink.name}</p>
+            </Link>
           ))}
           {/* <p>
             <Languages />
