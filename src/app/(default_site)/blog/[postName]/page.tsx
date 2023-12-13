@@ -1,8 +1,15 @@
-export default function BlogPost({ params }: { params: { blogName: string } }) {
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
+
+export default function BlogPost({ params }: { params: { postName: string } }) {
   // TODO: Fetch the blog using blogName
   return (
     <section className="content-grid py-8">
-      <h2 className="pb-8 text-3xl">BlogPost {params.blogName}</h2>
+      <Link href="/blog" className="flex items-center gap-2 pb-4 text-primary">
+        <ChevronLeft />
+        Back to Blog
+      </Link>
+      <h2 className="pb-8 text-3xl">BlogPost {params.postName}</h2>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis earum
         velit voluptatem placeat minus ex voluptatibus deleniti culpa numquam
@@ -21,7 +28,7 @@ export default function BlogPost({ params }: { params: { blogName: string } }) {
         explicabo quos repudiandae alias laudantium vitae fugiat quasi facilis
         enim harum quam? Expedita sapiente vero quam.
       </p>
-      <p>
+      <p className="">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore cum
         doloribus consequatur rerum? Dolores itaque tempore explicabo autem
         nobis, alias tempora cupiditate consequatur, assumenda quam aliquam eum

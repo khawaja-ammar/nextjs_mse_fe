@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 // - Menu with help/support/contact page
 
 const NavLinks = [
-  { name: "Blogs", href: "/blogs" },
+  { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
 
