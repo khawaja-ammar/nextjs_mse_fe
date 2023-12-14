@@ -95,9 +95,10 @@ const blogPostsExample: blogIndex = {
 
 export default function BlogPage() {
   // TODO: fetch + ISR for this
+  // Suspense loading with skeletons
   return (
     <section className="content-grid py-8">
-      <h2 className="pb-8 text-3xl text-primary">The Latest Travel blogs</h2>
+      <h2 className="pb-8 text-3xl text-primary">Travel blogs</h2>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
         {blogPostsExample.blogPosts.map((post, i) => (
           <Card key={i} className="">
@@ -113,7 +114,10 @@ export default function BlogPage() {
               <p>Summary points</p>
             </CardContent>
             <CardFooter>
-              <Button variant="secondary" className="w-full">
+              <Button
+                variant="secondary"
+                className="w-full text-secondary-foreground"
+              >
                 <Link href={`/blog/${post.post_title}`}>Read More</Link>
               </Button>
             </CardFooter>

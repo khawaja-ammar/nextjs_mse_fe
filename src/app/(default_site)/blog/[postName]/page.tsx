@@ -3,6 +3,7 @@ import Link from "next/link";
 
 export default function BlogPost({ params }: { params: { postName: string } }) {
   // TODO: Fetch the blog using blogName
+  // Suspense loading with skeletons
   return (
     <section className="content-grid py-8">
       <Link href="/blog" className="flex items-center gap-2 pb-4 text-primary">

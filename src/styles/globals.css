@@ -68,8 +68,8 @@
 @layer components {
   .content-grid {
     --padding-inline: 1.5rem; /* Min Padding when no space */
-    --content-max-width: 900px; /* Max size of main content */
-    --breakout-max-width: 1080px; /* Max size of breakout */
+    --content-max-width: 80ch; /* Max size of main content */
+    --breakout-max-width: 90ch; /* Max size of breakout */
 
     --full: minmax(var(--padding-inline), 1fr);
     --breakout: minmax(
