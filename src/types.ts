@@ -27,3 +27,20 @@ export type SearchQueryResponse = {
   currency: string;
   properties: Property[];
 };
+
+export type blogPost = {
+  post_id: number; // id might not be needed, title + author PK
+  post_title: string;
+  post_author: string;
+  created_at: Date;
+  // summary point
+  // Db can do this
+  // total_views: number;
+  // tags: string[];
+};
+
+export type blogIndex = {
+  updatedAt: string;
+  totalBlogs: number;
+  blogPosts: blogPost[];
+};

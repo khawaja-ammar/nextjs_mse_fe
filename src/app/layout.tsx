@@ -11,10 +11,10 @@ const font = Atkinson_Hyperlegible({
   weight: "400",
 });
 
-// export const metadata: Metadata = {
-//   title: "TravelMandi",
-//   description: "",
-// };
+export const metadata: Metadata = {
+  title: "TravelMandi",
+  description: "Your one stop shop for planning your text trip",
+};
 
 export default function RootLayout({
   children,

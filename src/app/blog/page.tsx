@@ -1,21 +1,6 @@
 import BlogCard from "@/components/blogPage/blog-card";
 
-type blogPost = {
-  post_id: number; // id might not be needed, title + author PK
-  post_title: string;
-  post_author: string;
-  created_at: Date;
-  // summary point
-  // Db can do this
-  // total_views: number;
-  // tags: string[];
-};
-
-type blogIndex = {
-  updatedAt: string;
-  totalBlogs: number;
-  blogPosts: blogPost[];
-};
+import { blogIndex, blogPost } from "@/types";
 
 const blogPostsEg: blogIndex = (() => {
   const total = 10;
@@ -43,12 +28,7 @@ export default function BlogPage() {
       <h2 className="pb-8 text-3xl text-primary">Travel blogs</h2>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
         {blogPostsEg.blogPosts.map((post, i) => (
-          <BlogCard
-            key={i}
-            created_at={post.created_at}
-            post_author={post.post_author}
-            post_title={post.post_title}
-          />
+          <BlogCard key={i} post={post} />
         ))}
       </div>
     </section>
