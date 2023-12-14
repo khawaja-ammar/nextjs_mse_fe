@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SiteSearch from "./searchBar/site-search";
 import { Label } from "@/components/ui/label";
+import LogoText from "./logo-text";
 
 // import { Languages } from "lucide-react";
 
@@ -33,12 +33,7 @@ export default function MainNav() {
           }`}
         >
           <Link href="/">
-            <Image
-              src="/images/logoText.svg"
-              width={210}
-              height={45}
-              alt="Travel Mandi logo and text"
-            />
+            <LogoText img_dim={35} />
           </Link>
           {pathname === "/search" && <SiteSearch />}
         </div>

@@ -1,7 +1,16 @@
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
-export default function BlogPost({ params }: { params: { postName: string } }) {
+// TODO: Do this for caching pathnames etc
+// export async function generateStaticParams() {
+//   // Fetch list of routes
+//   const posts = await fetch(``).then((res) => res.json());
+//   return posts.map((post) => ({
+//     slug: post.slug,
+//   }));
+// }
+
+export default function BlogPost({ params }: { params: { slug: string } }) {
   // TODO: Fetch the blog using blogName
   // Suspense loading with skeletons
   return (
@@ -10,7 +19,7 @@ export default function BlogPost({ params }: { params: { postName: string } }) {
         <ChevronLeft />
         Back to Blog
       </Link>
-      <h2 className="pb-8 text-3xl">BlogPost {params.postName}</h2>
+      <h2 className="pb-8 text-3xl">BlogPost {params.slug}</h2>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis earum
         velit voluptatem placeat minus ex voluptatibus deleniti culpa numquam

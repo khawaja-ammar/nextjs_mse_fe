@@ -1,6 +1,8 @@
-// import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Atkinson_Hyperlegible } from "next/font/google";
 import "@/styles/globals.css";
+import SiteHeader from "@/components/site-header";
+import SiteFooter from "@/components/site-footer";
 
 import { Toaster } from "@/components/ui/toaster";
 
@@ -25,7 +27,11 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={font.className}>
-        <main>{children}</main>
+        <SiteHeader />
+        <main className="min-h-[calc(100vh-var(--height-navbar)-var(--height-footer))]">
+          {children}
+        </main>
+        <SiteFooter />
         <Toaster />
       </body>
     </html>
