@@ -1,7 +1,9 @@
-import { BlogPage } from "@/components/blogPage/blog-page";
-import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import { Suspense, cache } from "react";
+import { Suspense } from "react";
+import { ChevronLeft } from "lucide-react";
+import { parseMDX } from "@/lib/mdxParser";
+import { Skeleton } from "@/components/ui/skeleton";
+import { env } from "@/lib/env.mjs";
 
 // TODO: Do this for caching pathnames etc
 // export async function generateStaticParams() {
@@ -22,23 +24,58 @@ type Props = {
 
 export default function BlogPost({ params: { slug } }: Props) {
   // TODO: Fetch the blog using blogName
-  const blog = fetch(
-    "https://pub-c1506036110742a5af3ac359118ca68a.r2.dev/sample.md",
-    {
-      cache: "no-cache",
-    },
-  );
-  // Suspense loading with skeletons
+  const blog = fetch(`${env.BLOG_BUCKET}/${slug}.md`, {
+    cache: "no-cache",
+  });
   return (
     <section className="content-grid py-8">
-      <Link href="/blog" className="flex items-center gap-2 pb-4 text-primary">
+      <Link href="/blog" className="flex items-center gap-2 pb-4">
         <ChevronLeft />
         Back to Blog
       </Link>
-      <h2 className="pb-8 text-3xl">BlogPost {slug}</h2>
-      <Suspense key={slug} fallback={<>Loading...</>}>
-        <BlogPage req={blog} />
-      </Suspense>
+      <div className="flex flex-col">
+        <h1 className="pb-8 text-4xl text-primary">Title: {slug}</h1>
+        <Suspense key={slug} fallback={<BlogPostSkeleton />}>
+          <BlogPostContent req={blog} />
+        </Suspense>
+      </div>
     </section>
+  );
+}
+
+type PropsBlogContent = {
+  req: Promise<Response>;
+};
+async function BlogPostContent({ req }: PropsBlogContent) {
+  try {
+    const res = await req;
+    if (!res.ok) {
+      if (res.status === 404) throw new Error("File Not Found");
+      console.log(res);
+      throw new Error("File doesnt exist?");
+    }
+    const rawMDX = await res.text();
+    if (rawMDX === "404: Not Found") throw new Error("Not Found");
+
+    const content = parseMDX(rawMDX);
+
+    return <div className="markdown-body">{content}</div>;
+  } catch (err) {
+    let message = "";
+    if (err === "File Not Found") {
+      message = "File Not Found";
+    } else {
+      message = "Error";
+    }
+
+    return <p>{message}</p>;
+  }
+}
+
+function BlogPostSkeleton() {
+  return (
+    <>
+      <Skeleton className="h-[1000px] w-full" />
+    </>
   );
 }

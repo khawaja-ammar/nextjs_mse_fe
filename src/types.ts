@@ -32,7 +32,7 @@ export type blogPost = {
   post_id: number; // id might not be needed, title + author PK
   post_title: string;
   post_author: string;
-  created_at: Date;
+  created_at: string;
   // summary point
   // Db can do this
   // total_views: number;
