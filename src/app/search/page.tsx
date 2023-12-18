@@ -1,21 +1,23 @@
 import { Suspense } from "react";
 
 import { env } from "@/lib/env.mjs";
-import {
-  SearchResults,
-  SearchResultsLoading,
-} from "@/components/searchPage/searchpage-results";
 import SearchPageWrapper from "@/components/searchPage/searchpage-wrapper";
 import SearchPageInvalid from "@/components/searchPage/searchpage-invalid";
+import { SearchQueryResponse } from "@/types";
+import {
+  SearchResultCard,
+  SearchResultCardSkeleton,
+} from "@/components/searchPage/searchpage-result-card";
 
-async function getSearchQueryResults(query: {
+const NUM_SKELETON = 6;
+
+function getSearchQueryResults(query: {
   [key: string]: string;
 }): Promise<Response> {
   return fetch(`${env.BACKEND_URL}/test/jsonsearchquery`, {
     method: "GET",
     cache: "no-cache",
   });
-  // return res.json();
 }
 
 // TODO: Add validate search params (core (min required) params must be present)
@@ -33,12 +35,54 @@ export default function SearchPage({ searchParams }: Props) {
   }
   return (
     <SearchPageWrapper searchParams={searchParams}>
-      <Suspense key={suspenseKey} fallback={<SearchResultsLoading />}>
-        <SearchResults
-          // query={searchParams}
-          req={getSearchQueryResults(searchParams)}
-        />
-      </Suspense>
+      <div className="flex flex-col items-center gap-4">
+        <Suspense key={suspenseKey} fallback={<SearchResultsSkeleton />}>
+          <SearchResults req={getSearchQueryResults(searchParams)} />
+        </Suspense>
+      </div>
     </SearchPageWrapper>
+  );
+}
+
+async function SearchResults({ req }: { req: Promise<Response> }) {
+  // const result = await getSearchQueryResults(query);
+  try {
+    const res = await req;
+    if (!res.ok) {
+      throw new Error();
+    }
+    const data: SearchQueryResponse = await res.json();
+    return (
+      <>
+        <>
+          {data.properties.map((property, i) => (
+            <SearchResultCard
+              key={i}
+              property={property}
+              currency={data.currency}
+            />
+          ))}
+        </>
+        {/* TODO: Pagination Component that links to other pages? */}
+        {/* <SearchPagePagination /> */}
+      </>
+    );
+  } catch (err) {
+    if (err instanceof Error) {
+      return <>Server not responding: {err.message}</>;
+    } else {
+      console.error("Error: ", err);
+      throw err;
+    }
+  }
+}
+
+function SearchResultsSkeleton() {
+  return (
+    <>
+      {Array.from(Array(NUM_SKELETON), (_, i) => {
+        return <SearchResultCardSkeleton key={i} />;
+      })}
+    </>
   );
 }

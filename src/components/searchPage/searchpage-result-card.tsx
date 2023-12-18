@@ -11,15 +11,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
+
 import Image from "next/image";
-// import { Input } from "@/components/ui/input";
 
 type Props = {
   property: Property;
   currency: string;
 };
-export default function SearchResultCard({ property, currency }: Props) {
+export function SearchResultCard({ property, currency }: Props) {
   return (
     <>
       <Card className="h-[180px] w-[600px] text-foreground">
@@ -52,5 +52,37 @@ export default function SearchResultCard({ property, currency }: Props) {
         </div>
       </Card>
     </>
+  );
+}
+
+export function SearchResultCardSkeleton() {
+  return (
+    <Card className="h-[180px] w-[600px]">
+      <Skeleton className="absolute h-[180px] w-[240px] rounded-l-2xl rounded-r-none" />
+      <div className="pl-[240px]">
+        <CardHeader>
+          <CardTitle className="flex justify-between">
+            {/* <p>{`${currency} ${property.room_priceINCtax}`}</p> */}
+            <Skeleton />
+            {/* <ShareIcon className="cursor-pointer text-primary hover:opacity-90" /> */}
+            <Skeleton />
+          </CardTitle>
+          <CardDescription>
+            {/* Found on {property.property_ota} */}
+            <Skeleton />
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {/* <p>{property.property_name}</p> */}
+          <Skeleton />
+        </CardContent>
+        <CardFooter className="flex justify-between">
+          {/* <p>Details</p> */}
+          <Skeleton />
+          {/* <p>View Deal</p> */}
+          <Skeleton />
+        </CardFooter>
+      </div>
+    </Card>
   );
 }
