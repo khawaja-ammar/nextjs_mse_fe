@@ -125,18 +125,10 @@ export default function SiteSearch() {
         MIN_DAYS_TRIP={MIN_DAYS_TRIP}
         MAX_DAYS_TRIP={MAX_DAYS_TRIP}
         MAX_DAYS_ADVANCE_BOOKING={MAX_DAYS_ADVANCE_BOOKING}
-        classNameButton={
-          pathname === "/"
-            ? "w-[150px] rounded-none h-full"
-            : "rounded-none w-[150px] h-full"
-        }
+        classNameButton="w-[150px] rounded-none h-full"
       />
       <SearchGuestSelector
-        className={
-          pathname === "/"
-            ? "h-full w-[237.5px] rounded-none"
-            : "h-full w-[190px] rounded-none"
-        }
+        className="h-full w-[190px] rounded-none"
         numAdults={numAdults}
         setNumAdults={setNumAdults}
         numChildren={numChildren}
@@ -150,14 +142,7 @@ export default function SiteSearch() {
         // TODO: MAX_CHILDREN_PER_ADULT logic
         MAX_CHILDREN_PER_ADULT={MAX_CHILDREN_PER_ADULT}
       />
-      <Button
-        type="submit"
-        className={
-          pathname === "/"
-            ? "h-full w-[137.5px] rounded-l-none"
-            : "h-full w-[110px] rounded-l-none"
-        }
-      >
+      <Button type="submit" className="h-full w-[110px] rounded-l-none">
         Search
       </Button>
     </form>

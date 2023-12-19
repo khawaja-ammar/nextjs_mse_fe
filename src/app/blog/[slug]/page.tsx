@@ -4,15 +4,18 @@ import { ChevronLeft } from "lucide-react";
 import { parseMDX } from "@/lib/mdxParser";
 import { Skeleton } from "@/components/ui/skeleton";
 import { env } from "@/lib/env.mjs";
+import { blogIndex } from "@/types";
 
 // TODO: Do this for caching pathnames etc
-// export async function generateStaticParams() {
-//   // Fetch list of routes
-//   const posts = await fetch(``).then((res) => res.json());
-//   return posts.map((post) => ({
-//     slug: post.slug,
-//   }));
-// }
+export async function generateStaticParams() {
+  const list: blogIndex = await fetch(`${env.BLOG_BUCKET}/blogList.json`).then(
+    (res) => res.json(),
+  );
+
+  return list.blogPosts.map((blog) => ({
+    slug: blog.post_title,
+  }));
+}
 
 type Props = {
   params: {
@@ -27,7 +30,6 @@ export default function BlogPost({ params: { slug } }: Props) {
   const blog = fetch(`${env.BLOG_BUCKET}/${slug}.mdx`, {
     cache: "no-cache",
   });
-  console.log(`${env.BLOG_BUCKET}/${slug}.mdx`);
   return (
     <section className="content-grid py-8">
       <Link href="/blog" className="flex items-center gap-2 pb-4">
@@ -36,7 +38,7 @@ export default function BlogPost({ params: { slug } }: Props) {
       </Link>
       <div className="flex flex-col">
         <h1 className="pb-8 text-4xl text-primary">
-          {slug.replace(/%20/g, " ")}
+          {decodeURIComponent(slug)}
         </h1>
         <Suspense key={slug} fallback={<BlogPostSkeleton />}>
           <BlogPostContent req={blog} />
@@ -68,7 +70,7 @@ async function BlogPostContent({ req }: PropsBlogContent) {
     if (err === "File Not Found") {
       message = "File Not Found";
     } else {
-      message = "Error";
+      message = "File Not Found";
     }
 
     return <p>{message}</p>;
@@ -78,7 +80,7 @@ async function BlogPostContent({ req }: PropsBlogContent) {
 function BlogPostSkeleton() {
   return (
     <>
-      <Skeleton className="h-[1000px] w-full" />
+      <Skeleton className="h-[100vw] w-full" />
     </>
   );
 }

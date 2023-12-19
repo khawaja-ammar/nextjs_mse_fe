@@ -9,7 +9,7 @@ const NUM_SKELETONS = 9;
 export default function BlogListPage() {
   // TODO: fetch + ISR for this
   const req = fetch(`${env.BLOG_BUCKET}/blogList.json`, {
-    cache: "no-cache",
+    next: { revalidate: 3600 },
   });
   return (
     <section className="content-grid py-8">
@@ -24,7 +24,7 @@ export default function BlogListPage() {
 }
 
 async function BlogList({ req }: { req: Promise<Response> }) {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  // await new Promise((resolve) => setTimeout(resolve, 2000));
   const res = await req;
   const data: blogIndex = await res.json();
   return (
@@ -39,9 +39,8 @@ async function BlogList({ req }: { req: Promise<Response> }) {
 function BlogListSkeleton() {
   return (
     <>
-      {[...Array(NUM_SKELETONS)].map(() => (
-        // eslint-disable-next-line react/jsx-key
-        <BlogCardSkeleton />
+      {[...Array(NUM_SKELETONS)].map((_, i) => (
+        <BlogCardSkeleton key={i} />
       ))}
     </>
   );

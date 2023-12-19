@@ -21,7 +21,7 @@ export default function MainNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-20 mx-auto h-[var(--height-navbar)] border-b bg-secondary text-secondary-foreground">
+    <nav className="sticky top-0 z-20 mx-auto h-[var(--height-navbar)] border-b bg-secondary px-4 text-secondary-foreground">
       <div
         className={`flex h-full items-center ${
           pathname === "/" ? "justify-end" : "justify-between"
