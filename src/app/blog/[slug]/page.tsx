@@ -24,9 +24,10 @@ type Props = {
 
 export default function BlogPost({ params: { slug } }: Props) {
   // TODO: Fetch the blog using blogName
-  const blog = fetch(`${env.BLOG_BUCKET}/${slug}.md`, {
+  const blog = fetch(`${env.BLOG_BUCKET}/${slug}.mdx`, {
     cache: "no-cache",
   });
+  console.log(`${env.BLOG_BUCKET}/${slug}.mdx`);
   return (
     <section className="content-grid py-8">
       <Link href="/blog" className="flex items-center gap-2 pb-4">
@@ -34,7 +35,9 @@ export default function BlogPost({ params: { slug } }: Props) {
         Back to Blog
       </Link>
       <div className="flex flex-col">
-        <h1 className="pb-8 text-4xl text-primary">Title: {slug}</h1>
+        <h1 className="pb-8 text-4xl text-primary">
+          {slug.replace(/%20/g, " ")}
+        </h1>
         <Suspense key={slug} fallback={<BlogPostSkeleton />}>
           <BlogPostContent req={blog} />
         </Suspense>

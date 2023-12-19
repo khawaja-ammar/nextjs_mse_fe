@@ -66,10 +66,27 @@
 }
 
 @layer components {
+  .two-line-ellipsis {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+  }
+  .six-line-ellipsis {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 6;
+  }
+}
+
+@layer components {
   .content-grid {
     --padding-inline: 1.5rem; /* Min Padding when no space */
-    --content-max-width: 80ch; /* Max size of main content */
-    --breakout-max-width: 90ch; /* Max size of breakout */
+    --content-max-width: 900px; /* Max size of main content */
+    --breakout-max-width: 1080px; /* Max size of breakout */
 
     --full: minmax(var(--padding-inline), 1fr);
     --breakout: minmax(

@@ -18,16 +18,20 @@ type Props = {
 };
 export function BlogCard({ post }: Props) {
   return (
-    <Card className="h-[340px]">
-      <CardHeader className="">
-        <CardDescription>
+    <Card className="flex h-[400px] flex-col justify-between">
+      <CardHeader>
+        <CardDescription className="h-[20px]">
           {format(parseJSON(post.created_at), "PP")}
         </CardDescription>
-        <CardTitle>{post.post_title}</CardTitle>
-        <CardDescription>By {post.post_author}</CardDescription>
+        <CardTitle className="two-line-ellipsis h-[3rem]">
+          {post.post_title}
+        </CardTitle>
+        <CardDescription className="h-[20px]">
+          By {post.post_author}
+        </CardDescription>
       </CardHeader>
-      <CardContent className="mx-auto flex h-[150px] flex-col justify-between">
-        <p>Summary points</p>
+      <CardContent>
+        <p className="six-line-ellipsis">{post.summary}</p>
       </CardContent>
       <CardFooter>
         <Button
@@ -43,22 +47,18 @@ export function BlogCard({ post }: Props) {
 
 export function BlogCardSkeleton() {
   return (
-    <Card className="h-[340px]">
-      <CardHeader className="">
-        <CardDescription>
-          <Skeleton className="h-[0.875rem] w-full" />
-        </CardDescription>
-        <CardTitle>
-          <Skeleton className="h-[1.5rem] w-full" />
-        </CardTitle>
-        <CardDescription>
-          <Skeleton className="h-[0.875rem] w-full" />
-        </CardDescription>
+    <Card className="flex h-[400px] flex-col justify-between overflow-clip">
+      <CardHeader className="h-[242px]">
+        <Skeleton className="h-[14px] w-[120px] py-[3px]" />
+        <Skeleton className="h-[48px] w-full" />
+        <Skeleton className="h-[14px] w-[150px] py-[3px]" />
       </CardHeader>
-      <CardContent className="mx-auto flex h-[150px] flex-col justify-between">
-        {/* <Skeleton className="h-full w-full" /> */}
+      <CardContent>
+        <Skeleton className="h-[150px] w-full" />
       </CardContent>
-      <CardFooter></CardFooter>
+      <CardFooter>
+        <Skeleton className="h-[40px] w-full" />
+      </CardFooter>
     </Card>
   );
 }

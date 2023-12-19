@@ -33,6 +33,7 @@ export type blogPost = {
   post_title: string;
   post_author: string;
   created_at: string;
+  summary: string;
   // summary point
   // Db can do this
   // total_views: number;

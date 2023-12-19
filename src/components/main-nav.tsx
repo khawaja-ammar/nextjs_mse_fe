@@ -14,7 +14,7 @@ import LogoText from "./logo-text";
 
 const NavLinks = [
   { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/contact" },
+  // { name: "Contact", href: "/contact" },
 ];
 
 export default function MainNav() {

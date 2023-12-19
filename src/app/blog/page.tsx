@@ -1,28 +1,10 @@
-import { BlogCard, BlogCardSkeleton } from "@/components/blogPage/blog-card";
-
-import { blogIndex, blogPost } from "@/types";
 import { Suspense } from "react";
 import { env } from "@/lib/env.mjs";
 
-const NUM_SKELETONS = 9;
+import { blogIndex } from "@/types";
+import { BlogCard, BlogCardSkeleton } from "@/components/blogPage/blog-card";
 
-// const blogPostsEg: blogIndex = (() => {
-//   const total = 10;
-//   const blogsArr: blogPost[] = [];
-//   for (let i = 0; i < total; i++) {
-//     blogsArr.push({
-//       post_id: i,
-//       post_author: "ammar",
-//       post_title: `Blog post ${i + 1}`,
-//       created_at: "Dec 18, 2023",
-//     });
-//   }
-//   return {
-//     updatedAt: "",
-//     totalBlogs: total,
-//     blogPosts: blogsArr,
-//   };
-// })();
+const NUM_SKELETONS = 9;
 
 export default function BlogListPage() {
   // TODO: fetch + ISR for this
@@ -42,7 +24,7 @@ export default function BlogListPage() {
 }
 
 async function BlogList({ req }: { req: Promise<Response> }) {
-  // await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   const res = await req;
   const data: blogIndex = await res.json();
   return (
@@ -57,9 +39,10 @@ async function BlogList({ req }: { req: Promise<Response> }) {
 function BlogListSkeleton() {
   return (
     <>
-      {Array.from(Array(NUM_SKELETONS), (_, i) => {
-        return <BlogCardSkeleton key={i} />;
-      })}
+      {[...Array(NUM_SKELETONS)].map(() => (
+        // eslint-disable-next-line react/jsx-key
+        <BlogCardSkeleton />
+      ))}
     </>
   );
 }
