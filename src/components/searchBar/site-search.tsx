@@ -111,7 +111,7 @@ export default function SiteSearch() {
 
   return (
     <form
-      className="flex h-searchbarcontainer w-full items-center justify-center"
+      className="h-smallscreensearch flex w-full flex-col items-center justify-center pb-4 md:h-searchbarcontainer md:flex-row md:pb-0"
       onSubmit={(e) => submitSearch(e)}
       autoComplete="off"
     >
@@ -125,10 +125,10 @@ export default function SiteSearch() {
         MIN_DAYS_TRIP={MIN_DAYS_TRIP}
         MAX_DAYS_TRIP={MAX_DAYS_TRIP}
         MAX_DAYS_ADVANCE_BOOKING={MAX_DAYS_ADVANCE_BOOKING}
-        classNameButton="w-[150px] rounded-none h-full"
+        classNameButton="w-full md:w-[150px] md:rounded-none h-full"
       />
       <SearchGuestSelector
-        className="h-full w-[190px] rounded-none"
+        className="h-full w-full rounded-t-none md:w-[190px] md:rounded-none"
         numAdults={numAdults}
         setNumAdults={setNumAdults}
         numChildren={numChildren}
@@ -142,7 +142,10 @@ export default function SiteSearch() {
         // TODO: MAX_CHILDREN_PER_ADULT logic
         MAX_CHILDREN_PER_ADULT={MAX_CHILDREN_PER_ADULT}
       />
-      <Button type="submit" className="h-full w-[110px] rounded-l-none">
+      <Button
+        type="submit"
+        className="mt-2 h-full w-full md:mt-0 md:w-[110px] md:rounded-l-none"
+      >
         Search
       </Button>
     </form>

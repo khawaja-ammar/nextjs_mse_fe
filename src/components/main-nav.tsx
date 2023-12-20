@@ -21,9 +21,15 @@ export default function MainNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-20 mx-auto h-[var(--height-navbar)] border-b bg-secondary px-4 text-secondary-foreground">
+    <nav
+      className={`sticky top-0 z-20 mx-auto border-b bg-secondary px-4 text-secondary-foreground ${
+        pathname === "/search"
+          ? "h-[calc(var(--height-navbar)+var(--height-smallscreen-search))]"
+          : "h-navbar"
+      }`}
+    >
       <div
-        className={`flex h-full items-center ${
+        className={`flex h-navbar items-center ${
           pathname === "/" ? "justify-end" : "justify-between"
         }`}
       >
@@ -35,7 +41,9 @@ export default function MainNav() {
           <Link href="/">
             <LogoText img_dim={35} />
           </Link>
-          {pathname === "/search" && <SiteSearch />}
+          <div className="hidden xl:block">
+            {pathname === "/search" && <SiteSearch />}
+          </div>
         </div>
         <div className="flex gap-4">
           {NavLinks.map((NavLink, i) => (
@@ -54,6 +62,9 @@ export default function MainNav() {
             <Languages />
           </p> */}
         </div>
+      </div>
+      <div className="h-smallscreensearch xl:hidden">
+        {pathname === "/search" && <SiteSearch />}
       </div>
     </nav>
   );

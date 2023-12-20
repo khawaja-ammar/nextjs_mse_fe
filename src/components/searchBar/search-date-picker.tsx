@@ -44,13 +44,13 @@ export function SearchDatePicker({
   }, [fromDate]);
 
   return (
-    <>
+    <div className="flex h-full w-full flex-row md:w-auto">
       <Popover>
         <PopoverTrigger asChild>
           <Button
             variant={"outline"}
             className={cn(
-              "w-[280px] justify-start text-left font-normal",
+              "w-[280px] justify-start rounded-none text-left font-normal",
               classNameButton,
               !fromDate && "text-muted-foreground",
             )}
@@ -78,7 +78,7 @@ export function SearchDatePicker({
           <Button
             variant={"outline"}
             className={cn(
-              "w-[280px] justify-start text-left font-normal",
+              "w-[280px] justify-start rounded-none text-left font-normal",
               classNameButton,
               !toDate && "text-muted-foreground",
             )}
@@ -100,6 +100,6 @@ export function SearchDatePicker({
           />
         </PopoverContent>
       </Popover>
-    </>
+    </div>
   );
 }

@@ -49,10 +49,21 @@
     --radius: 1rem;
 
     --height-navbar: 80px;
+    --height-smallscreen-search: 196px;
     --height-searchbarcontainer: 45px;
     --height-footer: 80px;
     --height-searchpage-space: 4rem;
     --width-searchbar: 1000px;
+  }
+  @media screen and (min-width: 768px) {
+    :root {
+      --height-smallscreen-search: var(--height-navbar);
+    }
+  }
+  @media screen and (min-width: 1280px) {
+    :root {
+      --height-smallscreen-search: 0px;
+    }
   }
 }
 
@@ -1243,7 +1254,7 @@
 }
 
 .react-autosuggest__container {
-  @apply relative h-full w-[312.5px] rounded-b-2xl;
+  @apply relative h-full w-full md:w-[312.5px];
 }
 
 .react-autosuggest__container::before {
@@ -1256,8 +1267,8 @@
 }
 
 .react-autosuggest__input {
-  @apply h-full w-full !rounded-r-none border border-input bg-background py-2 pl-8 pr-3 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground;
-  border-radius: calc(var(--radius) - 2px);
+  @apply h-full w-full rounded-2xl !rounded-b-none border border-input bg-background py-2 pl-8 pr-3 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground md:!rounded-r-none md:!rounded-bl-2xl;
+  /* border-radius: calc(var(--radius) - 2px); */
 }
 
 .react-autosuggest__input--focused {
@@ -1265,7 +1276,8 @@
 }
 
 .react-autosuggest__input--open {
-  border-radius: calc(var(--radius) - 2px);
+  @apply rounded-2xl;
+  /* border-radius: calc(var(--radius) - 2px); */
 }
 
 .react-autosuggest__suggestions-container {
