@@ -19,21 +19,21 @@ export default function SearchPageWrapper({
   searchParams: { [key: string]: string };
   children: React.ReactNode;
 }) {
-  // UseLocalStorage to persist state of filter toggle and map toggle
-  const [displayFilters, setDisplayFilters] = React.useState(true);
+  // TODO: UseLocalStorage to persist state of filter toggle and map toggle
+  // const [displayFilters, setDisplayFilters] = React.useState(true);
 
   return (
     <div className="flex gap-4">
-      {displayFilters && (
+      {/* {displayFilters && (
         <SearchPageFilters
           className="basis-1/5"
           setDisplayFilters={setDisplayFilters}
         />
-      )}
+      )} */}
 
       <div className="flex basis-2/5 flex-col items-center pb-[var(--height-searchpage-space)]">
         <div className="flex h-searchpage_space items-center text-2xl">
-          {!displayFilters && (
+          {/* {!displayFilters && (
             <Button
               variant="ghost"
               className="h-searchpage_space self-center text-primary hover:text-primary"
@@ -44,31 +44,12 @@ export default function SearchPageWrapper({
                 <span>Show filters</span>
               </span>
             </Button>
-          )}
+          )} */}
           <p>{`Results for ${searchParams.q}`}</p>
         </div>
         {children}
       </div>
-      <SearchPageMap className="basis-2/5" />
+      {/* <SearchPageMap className="basis-2/5" /> */}
     </div>
   );
 }
-
-/*
-<div className="flex">
-<SearchPageFilters className="basis-1/3" />
-<div className="flex basis-1/3 flex-col items-center pb-[var(--height-searchpage-space)]">
-  <div className="h-searchpage_space flex items-center text-2xl">
-    <p>{`Results for "${searchParams.q}"`}</p>
-  </div>
-  <Suspense key={suspenseKey} fallback={<SearchResultsLoading />}>
-    <SearchResults query={params} />
-  </Suspense>
-</div>
-<div className="basis-1/3">
-  <div className="h-searchpage_space flex items-center justify-center">
-    <p>MAP Toggle</p>
-  </div>
-</div>
-</div>
-*/

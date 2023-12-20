@@ -39,7 +39,7 @@ export default function MainNav() {
           }`}
         >
           <Link href="/">
-            <LogoText img_dim={35} />
+            <LogoText page="Search" />
           </Link>
           <div className="hidden xl:block">
             {pathname === "/search" && <SiteSearch />}
