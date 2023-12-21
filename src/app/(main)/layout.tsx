@@ -29,7 +29,9 @@ export default function RootLayout({
       </head>
       <body className={font.className}>
         <SiteHeader />
-        <main className="min-h-[calc(100vh-var(--height-navbar)-var(--height-footer))]">
+        <main
+        // className="min-h-[calc(100vh-var(--height-navbar)-var(--height-footer))]"
+        >
           {children}
         </main>
         <SiteFooter />

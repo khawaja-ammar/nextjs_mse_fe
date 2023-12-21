@@ -63,9 +63,11 @@ export default function MainNav() {
           </p> */}
         </div>
       </div>
-      <div className="h-smallscreensearch xl:hidden">
-        {pathname === "/search" && <SiteSearch />}
-      </div>
+      {pathname === "/search" && (
+        <div className="h-smallscreensearch xl:invisible xl:hidden">
+          <SiteSearch />
+        </div>
+      )}
     </nav>
   );
 }

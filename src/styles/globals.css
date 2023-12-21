@@ -144,6 +144,9 @@
 }
 
 @layer components {
+  /* NOTE: At the end of this component are the media rules for mobile font size */
+  /* Changed default fontsize to 16px=>20px, and 12px=>16px */
+  /* TODO: Fix line heights and heights and widths as well */
   .markdown-body {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -152,7 +155,7 @@
     /* background-color: #ffffff; */
     /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
       Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"; */
-    font-size: 16px;
+    font-size: 20px; /* 16px */
     line-height: 1.5;
     word-wrap: break-word;
   }
@@ -504,7 +507,7 @@
       Consolas,
       Liberation Mono,
       monospace;
-    font-size: 12px;
+    font-size: 16px; /* 12px */
   }
 
   .markdown-body pre {
@@ -518,7 +521,7 @@
       Consolas,
       Liberation Mono,
       monospace;
-    font-size: 12px;
+    font-size: 16px; /* 12px */
     word-wrap: normal;
   }
 
@@ -933,7 +936,7 @@
   .markdown-body .csv-data th {
     padding: 5px;
     overflow: hidden;
-    font-size: 12px;
+    font-size: 16px; /* 12px */
     line-height: 1;
     text-align: left;
     white-space: nowrap;
@@ -965,7 +968,7 @@
   }
 
   .markdown-body .footnotes {
-    font-size: 12px;
+    font-size: 16px; /* 12px */
     color: #656d76;
     border-top: 1px solid #d0d7de;
   }
@@ -1250,6 +1253,27 @@
 
   .markdown-body .markdown-alert.markdown-alert-caution .markdown-alert-title {
     color: #d1242f;
+  }
+
+  @media screen and (max-width: 639px) {
+    .markdown-body {
+      font-size: 18px;
+    }
+    .markdown-body tt,
+    .markdown-body code,
+    .markdown-body samp {
+      font-size: 14px;
+    }
+    .markdown-body pre {
+      font-size: 14px;
+    }
+    .markdown-body .csv-data td,
+    .markdown-body .csv-data th {
+      font-size: 14px;
+    }
+    .markdown-body .footnotes {
+      font-size: 14px;
+    }
   }
 }
 
