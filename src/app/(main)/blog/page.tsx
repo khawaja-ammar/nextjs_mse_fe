@@ -4,22 +4,23 @@ import { env } from "@/lib/env.mjs";
 import { blogIndex } from "@/types";
 import { BlogCard, BlogCardSkeleton } from "@/components/blogPage/blog-card";
 
-const NUM_SKELETONS = 9;
+const NUM_SKELETONS = 6;
 
 export default function BlogListPage() {
   // TODO: fetch + ISR for this
   const req = fetch(`${env.BLOG_BUCKET}/blogList.json`, {
-    next: { revalidate: 3600 },
+    next: { revalidate: env.REVALIDATE_BLOG },
+    // cache: "no-cache",
   });
   return (
-    <section className="content-grid py-8">
+    <>
       <h2 className="pb-8 text-3xl text-primary">Travel blogs</h2>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
         <Suspense fallback={<BlogListSkeleton />}>
           <BlogList req={req} />
         </Suspense>
       </div>
-    </section>
+    </>
   );
 }
 

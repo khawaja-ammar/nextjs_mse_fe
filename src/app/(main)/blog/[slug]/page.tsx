@@ -3,8 +3,10 @@ import { Suspense } from "react";
 import { ChevronLeft } from "lucide-react";
 import { parseMDX } from "@/lib/mdxParser";
 import { Skeleton } from "@/components/ui/skeleton";
-import { env } from "@/lib/env.mjs";
 import { blogIndex } from "@/types";
+import { env } from "@/lib/env.mjs";
+
+export const dynamic = "auto";
 
 // TODO: Do this for caching pathnames etc
 export async function generateStaticParams() {
@@ -17,21 +19,20 @@ export async function generateStaticParams() {
   }));
 }
 
+// export async function generateMetadata({ params: { slug } }: Props) {}
 type Props = {
   params: {
     slug: string;
   };
 };
-
-// export async function generateMetadata({ params: { slug } }: Props) {}
-
 export default function BlogPost({ params: { slug } }: Props) {
   // TODO: Fetch the blog using blogName
   const blog = fetch(`${env.BLOG_BUCKET}/${slug}.mdx`, {
-    cache: "no-cache",
+    next: { revalidate: env.REVALIDATE_BLOG },
+    // cache: "no-cache",
   });
   return (
-    <section className="content-grid py-8">
+    <>
       <Link href="/blog" className="flex items-center gap-2 pb-4">
         <ChevronLeft />
         Back to Blog
@@ -44,7 +45,7 @@ export default function BlogPost({ params: { slug } }: Props) {
           <BlogPostContent req={blog} />
         </Suspense>
       </div>
-    </section>
+    </>
   );
 }
 
@@ -73,7 +74,11 @@ async function BlogPostContent({ req }: PropsBlogContent) {
       message = "File Not Found";
     }
 
-    return <p>{message}</p>;
+    return (
+      <div>
+        <p>{message}</p>
+      </div>
+    );
   }
 }
 

@@ -34,12 +34,14 @@ export function BlogCard({ post }: Props) {
         <p className="six-line-ellipsis">{post.summary}</p>
       </CardContent>
       <CardFooter>
-        <Button
-          variant="secondary"
-          className="h-[40px] w-full text-secondary-foreground"
-        >
-          <Link href={`/blog/${post.post_title}`}>Read More</Link>
-        </Button>
+        <Link href={`/blog/${post.post_title}`} className="h-[40px] w-full">
+          <Button
+            variant="secondary"
+            className="h-full w-full text-secondary-foreground"
+          >
+            Read More
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );

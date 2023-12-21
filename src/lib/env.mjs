@@ -6,6 +6,7 @@ export const env = createEnv({
   server: {
     BACKEND_URL: z.string().url(),
     BLOG_BUCKET: z.string().url(),
+    REVALIDATE_BLOG: z.number(),
   },
   // Environment variables available on the client (and server)
   client: {
@@ -18,6 +19,11 @@ export const env = createEnv({
   runtimeEnv: {
     BACKEND_URL: process.env.BACKEND_URL,
     BLOG_BUCKET: process.env.BLOG_BUCKET,
+    REVALIDATE_BLOG: (() => {
+      if (process.env.REVALIDATE_BLOG)
+        return parseInt(process.env.REVALIDATE_BLOG);
+      return undefined;
+    })(),
     NEXT_PUBLIC_AUTOSUGGEST_SERVICE_URL:
       process.env.NEXT_PUBLIC_AUTOSUGGEST_SERVICE_URL,
     // NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
