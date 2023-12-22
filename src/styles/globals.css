@@ -47,9 +47,9 @@
     --input: 220 13% 91%;
 
     --radius: 1rem;
-
     --height-navbar: 80px;
-    --height-smallscreen-search: 196px;
+    --height-smallscreen-search: 162px;
+    --height-smallscreen-search-container: 179.5px; /*(162px + 17.5px)*/
     --height-searchbarcontainer: 45px;
     --height-footer: 80px;
     --height-searchpage-space: 4rem;
@@ -57,12 +57,12 @@
   }
   @media screen and (min-width: 768px) {
     :root {
-      --height-smallscreen-search: var(--height-navbar);
+      --height-smallscreen-search-container: var(--height-navbar);
     }
   }
   @media screen and (min-width: 1280px) {
     :root {
-      --height-smallscreen-search: 0px;
+      --height-smallscreen-search-container: 0px;
     }
   }
 }

@@ -111,7 +111,7 @@ export default function SiteSearch() {
 
   return (
     <form
-      className="h-smallscreensearch flex w-full flex-col items-center justify-center pb-4 md:h-searchbarcontainer md:flex-row md:pb-0"
+      className="flex h-smallscreensearch w-full flex-col items-center justify-center md:h-searchbarcontainer md:flex-row md:pb-0"
       onSubmit={(e) => submitSearch(e)}
       autoComplete="off"
     >

@@ -29,7 +29,7 @@ export default function SearchPage({ searchParams }: Props) {
   // NOTE: Temp results until backend is deployed /////
   return (
     <>
-      <div className="flex min-h-[calc(100vh-var(--height-navbar)-var(--height-smallscreen-search)-var(--height-footer))] flex-col items-center justify-center gap-4">
+      <div className="flex min-h-[calc(100vh-var(--height-navbar)-var(--height-smallscreen-search-container)-var(--height-footer))] flex-col items-center justify-center gap-4">
         <h1 className="text-center text-4xl">
           Find the best hotel deals,{" "}
           <span className="text-primary">COMING SOON</span>

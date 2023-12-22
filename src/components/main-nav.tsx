@@ -24,7 +24,7 @@ export default function MainNav() {
     <nav
       className={`sticky top-0 z-20 mx-auto border-b bg-secondary px-4 text-secondary-foreground ${
         pathname === "/search"
-          ? "h-[calc(var(--height-navbar)+var(--height-smallscreen-search))]"
+          ? "h-[calc(var(--height-navbar)+var(--height-smallscreen-search-container))]"
           : "h-navbar"
       }`}
     >
@@ -64,7 +64,7 @@ export default function MainNav() {
         </div>
       </div>
       {pathname === "/search" && (
-        <div className="h-smallscreensearch xl:invisible xl:hidden">
+        <div className="h-[var(--height-smallscreen-search-container)] xl:invisible xl:hidden">
           <SiteSearch />
         </div>
       )}

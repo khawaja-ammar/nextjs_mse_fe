@@ -16,7 +16,7 @@ export default function SearchPageFilters({
     // TODO: Adjust top-0 to accomodate space
     <div
       className={cn(
-        "sticky top-[var(--height-navbar)] h-[calc(100vh-var(--height-navbar)-var(--height-smallscreen-search))] bg-secondary",
+        "sticky top-[var(--height-navbar)] h-[calc(100vh-var(--height-navbar)-var(--height-smallscreen-search-container))] bg-secondary",
         className,
       )}
     >
