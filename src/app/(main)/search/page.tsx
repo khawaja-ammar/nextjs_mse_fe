@@ -83,7 +83,6 @@ async function SearchResults({ req }: { req: Promise<Response> }) {
           ))}
         </>
         {/* TODO: Pagination Component that links to other pages? */}
-        {/* <SearchPagePagination /> */}
       </>
     );
   } catch (err) {
