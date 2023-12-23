@@ -1309,8 +1309,7 @@
 }
 
 .react-autosuggest__suggestions-container--open {
-  @apply absolute z-50 block w-[312.5px] rounded-md border bg-popover text-popover-foreground shadow-md outline-none;
-  top: 50px;
+  @apply absolute top-[45.5px] z-50 block w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none md:top-[50px] md:w-[312.5px];
 }
 
 .react-autosuggest__suggestions-list {
