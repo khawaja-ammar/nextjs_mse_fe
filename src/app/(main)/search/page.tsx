@@ -27,21 +27,21 @@ type Props = {
 };
 export default function SearchPage({ searchParams }: Props) {
   // NOTE: Temp results until backend is deployed /////
-  return (
-    <>
-      <div className="flex min-h-[calc(100vh-var(--height-navbar)-var(--height-smallscreen-search-container)-var(--height-footer))] flex-col items-center justify-center gap-4">
-        <h1 className="text-center text-4xl">
-          Find the best hotel deals,{" "}
-          <span className="text-primary">COMING SOON</span>
-        </h1>
-        <Link href="/blog">
-          <h2 className="text-2xl text-primary underline">
-            Visit our blog to get inspired
-          </h2>
-        </Link>
-      </div>
-    </>
-  );
+  // return (
+  //   <>
+  //     <div className="flex flex-col items-center justify-center gap-4">
+  //       <h1 className="text-center text-4xl">
+  //         Find the best hotel deals,{" "}
+  //         <span className="text-primary">COMING SOON</span>
+  //       </h1>
+  //       <Link href="/blog">
+  //         <h2 className="text-2xl text-primary underline">
+  //           Visit our blog to get inspired
+  //         </h2>
+  //       </Link>
+  //     </div>
+  //   </>
+  // );
   /////////////////////////////////////////////////////
 
   // TODO: If basic params not complete

@@ -52,7 +52,7 @@
     --height-smallscreen-search-container: 179.5px; /*(162px + 17.5px)*/
     --height-searchbarcontainer: 45px;
     --height-footer: 80px;
-    --height-searchpage-space: 4rem;
+    --height-searchpage-space: 70px;
     --width-searchbar: 1000px;
   }
   @media screen and (min-width: 768px) {
