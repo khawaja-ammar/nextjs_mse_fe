@@ -6,11 +6,14 @@ Made in Nextjs (React)
 
 ## TO CHANGE
 
+- [ ] change body color to secondary so in mobile view its consistent
+- [ ] implement svh, dvh, whatever is optimal for mobile views etc
 - [ ] Implement proper forms using Shadcn-form/react-hooks-form
 - [ ] Standardized API format (https://jsonapi.org/)
 
 ## TO ADD
 
+- [ ] add :dark css for dark mode
 - [ ] useRef to focus on input and guest selector when invalid/empty input
 - [ ] loading.tsx pages => Loading spinners?
 - [ ] **LAZY LOAD** images

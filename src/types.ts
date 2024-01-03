@@ -5,6 +5,23 @@ export type SearchQueryRequest = {
 };
 
 export type Property = {
+  hotel_name: string;
+  hotel_brand: string;
+  hotel_city: string;
+  hotel_state: string;
+  hotel_country: string;
+  hotel_zipcode: string;
+  hotel_coordinates: string;
+  hotel_checkintime: string;
+  hotel_checkouttime: string;
+  hotel_imageurls: string[];
+  hotel_overview: string;
+  hotel_starrating: string;
+  hotel_reviewaverage: string;
+  hotel_numreviews: number;
+};
+
+export type PropertyOld = {
   // property_city_country: string; // TODO: ADD THIS
   property_ota: string;
   property_name: string;

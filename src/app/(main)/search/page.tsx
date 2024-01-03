@@ -8,14 +8,13 @@ import {
   SearchResultCard,
   SearchResultCardSkeleton,
 } from "@/components/searchPage/searchpage-result-card";
-import Link from "next/link";
 
 const NUM_SKELETON = 6;
 
 function getSearchQueryResults(query: {
   [key: string]: string;
 }): Promise<Response> {
-  return fetch(`${env.BACKEND_URL}/test/jsonsearchquery`, {
+  return fetch(`${env.BACKEND_URL}/api/v1/hotel/0`, {
     method: "GET",
     cache: "no-cache",
   });
