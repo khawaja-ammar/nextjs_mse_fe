@@ -14,7 +14,10 @@ const NUM_SKELETON = 6;
 function getSearchQueryResults(query: {
   [key: string]: string;
 }): Promise<Response> {
-  return fetch(`${env.BACKEND_URL}/api/v1/hotel/0`, {
+  const lat = "-71.084641";
+  const lng = "42.346397";
+
+  return fetch(`${env.BACKEND_URL}/api/v1/hotel/0?lat=${lat}&lng=${lng}`, {
     method: "GET",
     cache: "no-cache",
   });

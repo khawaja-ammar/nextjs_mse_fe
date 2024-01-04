@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import SearchPageFilters from "./searchpage-filters";
-import { Filter as FilterIcon, SlidersHorizontal } from "lucide-react";
-import { Button } from "../ui/button";
-import SearchPageMap from "./searchpage-map";
+// import SearchPageFilters from "./searchpage-filters";
+// import { Filter as FilterIcon, SlidersHorizontal } from "lucide-react";
+// import { Button } from "../ui/button";
+// import SearchPageMap from "./searchpage-map";
 
 // TODO:
 // - Add sort by, total hotels found and other such metrics
@@ -20,16 +20,16 @@ export default function SearchPageWrapper({
   children: React.ReactNode;
 }) {
   // TODO: UseLocalStorage to persist state of filter toggle and map toggle
-  const [displayFilters, setDisplayFilters] = React.useState(true);
+  const [displayFilters, setDisplayFilters] = React.useState(false); // TODO:: Make this true
 
   return (
     <div className="flex gap-4">
-      {displayFilters && (
+      {/* {displayFilters && (
         <SearchPageFilters
           className="basis-1/6"
           setDisplayFilters={setDisplayFilters}
         />
-      )}
+      )} */}
 
       <div
         className={`flex flex-col items-center pb-[var(--height-searchpage-space)] ${
@@ -37,7 +37,7 @@ export default function SearchPageWrapper({
         }`}
       >
         <div className="flex h-searchpage_space items-center border-b text-2xl">
-          {!displayFilters && (
+          {/* {!displayFilters && (
             <Button
               variant="ghost"
               className="self-center text-primary hover:text-primary"
@@ -48,7 +48,7 @@ export default function SearchPageWrapper({
                 <span>Show filters</span>
               </span>
             </Button>
-          )}
+          )} */}
           <p>{`Results for ${searchParams.q}`}</p>
         </div>
         {children}

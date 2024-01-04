@@ -145,16 +145,18 @@ function ImageCarousel({ links }: { links: string[] }) {
       </CarouselContent>
       <CarouselNext className={`right-1 ${!hover && "hidden"}`} />
       <CarouselPrevious className={`left-1 ${!hover && "hidden"}`} />
-      <div className="absolute top-[90%] flex w-full items-center justify-center gap-2">
-        {[...Array(count)].map((_, i) => (
-          <div
-            className={`z-10 h-[6px] w-[6px] rounded-full ${
-              i === current ? "bg-primary" : "bg-secondary"
-            }`}
-            key={i}
-            // onClick={() => {}}
-          />
-        ))}
+      <div className="absolute top-[90%] z-10 flex w-full items-center justify-center">
+        <div className=" flex h-[12px] w-fit items-center justify-center gap-2 rounded-2xl bg-white/30 px-[6px]">
+          {[...Array(count)].map((_, i) => (
+            <div
+              className={`h-[6px] w-[6px] rounded-full ${
+                i === current ? "bg-primary" : "bg-secondary"
+              }`}
+              key={i}
+              // onClick={() => {}}
+            />
+          ))}
+        </div>
       </div>
     </Carousel>
   );

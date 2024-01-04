@@ -13,6 +13,7 @@ Made in Nextjs (React)
 
 ## TO ADD
 
+- [ ] move to trpc? for fe and be
 - [ ] add :dark css for dark mode
 - [ ] useRef to focus on input and guest selector when invalid/empty input
 - [ ] loading.tsx pages => Loading spinners?
