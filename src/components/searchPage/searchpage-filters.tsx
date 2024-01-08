@@ -13,26 +13,23 @@ export default function SearchPageFilters({
   setDisplayFilters,
 }: Props) {
   return (
-    // TODO: Adjust top-0 to accomodate space
+    // TODO: Make mobile slide in menu
     <div
       className={cn(
-        "sticky top-[var(--height-navbar)] h-[calc(100vh-var(--height-navbar)-var(--height-smallscreen-search))] bg-secondary",
+        "sticky top-[var(--height-navbar)+var(--height-smallscreen-search-container)] h-[calc(100vh-var(--height-navbar)-var(--height-smallscreen-search-container))] bg-secondary",
         className,
       )}
     >
       <ScrollArea className="h-full text-secondary-foreground">
         <div className="flex flex-col items-center">
-          <Button
-            variant="default"
-            className="my-4 h-searchpage_space self-center"
-            onClick={() => setDisplayFilters(false)}
-          >
-            <p className="flex items-center gap-2">
-              <FilterIcon className="h-4 w-4" />
-              <span>Hide filters</span>
-            </p>
-          </Button>
-          <Separator className="mx-auto" />
+          <div className="flex h-searchpage_space items-center border-b">
+            <Button variant="default" onClick={() => setDisplayFilters(false)}>
+              <p className="flex items-center gap-2">
+                <FilterIcon className="h-4 w-4" />
+                <span>Hide filters</span>
+              </p>
+            </Button>
+          </div>
           {/* <p>Hello</p> */}
         </div>
       </ScrollArea>

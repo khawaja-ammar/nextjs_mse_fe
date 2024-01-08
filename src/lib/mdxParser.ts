@@ -1,9 +1,16 @@
 import { compileMDX } from "next-mdx-remote/rsc";
+import MDXImage from "@/components/mdxComponents/mdx-image";
 
 export async function parseMDX(rawMDX: string) {
-  const { content, frontmatter } = await compileMDX({
+  const { content, frontmatter } = await compileMDX<{
+    // title: string,
+    // date: string,
+    // tags: string[]
+  }>({
     source: rawMDX,
-    components: {},
+    components: {
+      MDXImage,
+    },
     options: {
       parseFrontmatter: true,
       mdxOptions: {

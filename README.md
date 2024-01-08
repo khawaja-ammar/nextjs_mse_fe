@@ -6,13 +6,16 @@ Made in Nextjs (React)
 
 ## TO CHANGE
 
-- [x] Fix the calender, add validity checks etc
+- [ ] change body color to secondary so in mobile view its consistent
+- [ ] implement svh, dvh, whatever is optimal for mobile views etc
 - [ ] Implement proper forms using Shadcn-form/react-hooks-form
 - [ ] Standardized API format (https://jsonapi.org/)
 
 ## TO ADD
 
-- [x] Add Scrolling to guest-selector
+- [ ] move to trpc? for fe and be
+- [ ] add :dark css for dark mode
+- [ ] useRef to focus on input and guest selector when invalid/empty input
 - [ ] loading.tsx pages => Loading spinners?
 - [ ] **LAZY LOAD** images
 - [ ] Add timezone calculation using the origin of request, adjust options in regards to their timezone not the server's

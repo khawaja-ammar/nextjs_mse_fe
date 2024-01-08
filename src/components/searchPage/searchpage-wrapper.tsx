@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import SearchPageFilters from "./searchpage-filters";
-import { Filter as FilterIcon, SlidersHorizontal } from "lucide-react";
-import { Button } from "../ui/button";
-import SearchPageMap from "./searchpage-map";
+// import SearchPageFilters from "./searchpage-filters";
+// import { Filter as FilterIcon, SlidersHorizontal } from "lucide-react";
+// import { Button } from "../ui/button";
+// import SearchPageMap from "./searchpage-map";
 
 // TODO:
 // - Add sort by, total hotels found and other such metrics
@@ -20,23 +20,27 @@ export default function SearchPageWrapper({
   children: React.ReactNode;
 }) {
   // TODO: UseLocalStorage to persist state of filter toggle and map toggle
-  // const [displayFilters, setDisplayFilters] = React.useState(true);
+  const [displayFilters, setDisplayFilters] = React.useState(false); // TODO:: Make this true
 
   return (
     <div className="flex gap-4">
       {/* {displayFilters && (
         <SearchPageFilters
-          className="basis-1/5"
+          className="basis-1/6"
           setDisplayFilters={setDisplayFilters}
         />
       )} */}
 
-      <div className="flex basis-2/5 flex-col items-center pb-[var(--height-searchpage-space)]">
-        <div className="flex h-searchpage_space items-center text-2xl">
+      <div
+        className={`flex flex-col items-center pb-[var(--height-searchpage-space)] ${
+          displayFilters ? "basis-5/6" : "basis-full"
+        }`}
+      >
+        <div className="flex h-searchpage_space items-center border-b text-2xl">
           {/* {!displayFilters && (
             <Button
               variant="ghost"
-              className="h-searchpage_space self-center text-primary hover:text-primary"
+              className="self-center text-primary hover:text-primary"
               onClick={() => setDisplayFilters(true)}
             >
               <span className="flex items-center gap-2">

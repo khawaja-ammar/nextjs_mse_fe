@@ -15,7 +15,10 @@ const NUM_SKELETON = 6;
 function getSearchQueryResults(query: {
   [key: string]: string;
 }): Promise<Response> {
-  return fetch(`${env.BACKEND_URL}/test/jsonsearchquery`, {
+  const lat = "-71.084641";
+  const lng = "42.346397";
+
+  return fetch(`${env.BACKEND_URL}/api/v1/hotel/0?lat=${lat}&lng=${lng}`, {
     method: "GET",
     cache: "no-cache",
   });
@@ -29,7 +32,7 @@ export default function SearchPage({ searchParams }: Props) {
   // NOTE: Temp results until backend is deployed /////
   return (
     <>
-      <div className="flex min-h-[calc(100vh-var(--height-navbar)-var(--height-smallscreen-search)-var(--height-footer))] flex-col items-center justify-center gap-4">
+      <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-center text-4xl">
           Find the best hotel deals,{" "}
           <span className="text-primary">COMING SOON</span>
@@ -83,7 +86,6 @@ async function SearchResults({ req }: { req: Promise<Response> }) {
           ))}
         </>
         {/* TODO: Pagination Component that links to other pages? */}
-        {/* <SearchPagePagination /> */}
       </>
     );
   } catch (err) {
