@@ -8,6 +8,7 @@ import {
   SearchResultCard,
   SearchResultCardSkeleton,
 } from "@/components/searchPage/searchpage-result-card";
+import Link from "next/link";
 
 const NUM_SKELETON = 6;
 
@@ -29,21 +30,21 @@ type Props = {
 };
 export default function SearchPage({ searchParams }: Props) {
   // NOTE: Temp results until backend is deployed /////
-  // return (
-  //   <>
-  //     <div className="flex flex-col items-center justify-center gap-4">
-  //       <h1 className="text-center text-4xl">
-  //         Find the best hotel deals,{" "}
-  //         <span className="text-primary">COMING SOON</span>
-  //       </h1>
-  //       <Link href="/blog">
-  //         <h2 className="text-2xl text-primary underline">
-  //           Visit our blog to get inspired
-  //         </h2>
-  //       </Link>
-  //     </div>
-  //   </>
-  // );
+  return (
+    <>
+      <div className="flex flex-col items-center justify-center gap-4">
+        <h1 className="text-center text-4xl">
+          Find the best hotel deals,{" "}
+          <span className="text-primary">COMING SOON</span>
+        </h1>
+        <Link href="/blog">
+          <h2 className="text-2xl text-primary underline">
+            Visit our blog to get inspired
+          </h2>
+        </Link>
+      </div>
+    </>
+  );
   /////////////////////////////////////////////////////
 
   // TODO: If basic params not complete

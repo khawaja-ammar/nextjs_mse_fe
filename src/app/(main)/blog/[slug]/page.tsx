@@ -28,7 +28,7 @@ type Props = {
 export default function BlogPost({ params: { slug } }: Props) {
   // TODO: Fetch the blog using blogName
   const blog = fetch(`${env.BLOG_BUCKET}/${slug}.mdx`, {
-    // next: { revalidate: env.REVALIDATE_BLOG },
+    next: { revalidate: env.REVALIDATE_BLOG },
     // cache: "no-cache",
   });
   return (
